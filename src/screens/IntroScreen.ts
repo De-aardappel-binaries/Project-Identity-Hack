@@ -40,6 +40,7 @@ class IntroScreen extends GameScreen {
         if(isPressed) {
             if(this.startButton.checkIfPressed(isPressed)) {
                 this.nextScreen = true;
+                GameTime.startTimer();
             }
         }
     }
