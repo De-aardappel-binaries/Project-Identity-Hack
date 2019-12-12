@@ -3,4 +3,5 @@ Raw-assets/
 node_modules/
 .vscode
 .idea
-.js
+*.js
+*.js.map
