@@ -1,0 +1,6 @@
+ECHO is on.
+Raw-assets/
+node_modules/
+.vscode
+.idea
+.js
