@@ -4,6 +4,8 @@
 class IntroScreen extends GameScreen {
     public currentProfile: any;
     public profileImageUrls: Array<string>;
+    
+    private startButton: UIButton;
 
     public constructor(game: Game) {
         super(game);
@@ -13,6 +15,7 @@ class IntroScreen extends GameScreen {
         document.getElementById('body').style.backgroundSize = "cover";
         
         // create button
+        this.startButton = new UIButton(this.game.canvas.width / 2 - 100, this.game.canvas.height - 100, 200, 50);
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
@@ -31,7 +34,9 @@ class IntroScreen extends GameScreen {
         const isPressed = input.GetMousePressed();
 
         if(isPressed) {
-            console.log(isPressed);
+            if(this.startButton.checkIfPressed(isPressed)) {
+                console.log('jij drukke op die KNOP!!!' + Math.random());
+            }
         }
     }
 }
