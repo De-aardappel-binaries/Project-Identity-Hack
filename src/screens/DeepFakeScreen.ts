@@ -3,7 +3,8 @@
 
 class DeepFakeScreen extends GameScreen {
 
-    private image:HTMLImageElement;
+    private origninal:HTMLImageElement;
+    private deepfakeimage:HTMLImageElement
 
     // private readonly canvas: HTMLCanvasElement;
     // private readonly ctx: CanvasRenderingContext2D;
@@ -15,8 +16,8 @@ class DeepFakeScreen extends GameScreen {
         this.game.ctx.fillText("Zoek de Verschillen", 750, 100);
 
 
-        this.game.ctx.drawImage(this.image, 200,150 )
-        this.game.ctx.drawImage(this.image, 800,150 )
+        this.game.ctx.drawImage(this.origninal, 200,150 )
+        this.game.ctx.drawImage(this.deepfakeimage, 800,150 )
 
     }
 
@@ -28,9 +29,15 @@ class DeepFakeScreen extends GameScreen {
     constructor(game: Game) {
         super(game);
 
-        let image = new Image();
-        image.src = "C:/Users/laure/Desktop/project school/Project-Identity-Hack/assets/images/iWljgsxiCGvQsEPR.jpg";
-        this.image = image;
+        let imageoriginal = new Image();
+        imageoriginal.src = "C:/Users/laure/Desktop/project school/Project-Identity-Hack/assets/images/iWljgsxiCGvQsEPR.jpg"; // orignele Image
+        this.origninal = imageoriginal;
+
+        let imageDeepfake = new Image();
+        imageDeepfake.src = "C:/Users/laure/Desktop/project school/Project-Identity-Hack/assets/images/iWljgsxiCGvQsEPR.jpg"; // deepfakeImage 
+        this.deepfakeimage = imageDeepfake
+
+        
     }
 
   
