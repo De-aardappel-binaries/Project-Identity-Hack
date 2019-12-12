@@ -1,4 +1,7 @@
-class HackGroomerScreen {
+// tslint:disable member-ordering
+/// <reference path="../GameScreen.ts"/>
+
+class HackGroomerScreen extends GameScreen{
 
     private readonly canvas: HTMLCanvasElement;
     private readonly ctx: CanvasRenderingContext2D;
