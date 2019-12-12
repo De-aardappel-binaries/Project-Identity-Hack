@@ -24,7 +24,7 @@ class Game {
         this.scores = new Scores();
 
         // Set the initial screen
-        this.currentScreen = new StartScreen(this);
+        this.currentScreen = new DeepFakeScreen(this);
 
         this.loop();
     }
