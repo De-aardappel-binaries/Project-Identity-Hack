@@ -12,6 +12,10 @@ class HackGroomerScreen extends GameScreen{
 
     private keyboardListener: UserInput;
 
+    public draw(ctx: CanvasRenderingContext2D) {
+        console.log(GameTime.getTime())
+    }
+
     /**
      * Renders a random number between min and max
      * @param {number} min - minimal time
