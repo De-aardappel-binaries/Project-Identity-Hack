@@ -7,22 +7,26 @@ class IntroScreen extends GameScreen {
     
     private startButton: UIButton;
 
+    private nextScreen: boolean;
+
     public constructor(game: Game) {
         super(game);
 
         // set game background for this screen
-        document.getElementById('body').style.backgroundImage = "url('https://ak6.picdn.net/shutterstock/videos/5631416/thumb/1.jpg')";
-        document.getElementById('body').style.backgroundSize = "cover";
+        document.getElementById('body').style.backgroundImage = "url('https://live.staticflickr.com/684/32192716655_b94c77c8c3_b.jpg')";
         
         // create button
         this.startButton = new UIButton(this.game.canvas.width / 2 - 100, this.game.canvas.height - 100, 200, 50);
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
+
+        // Draw boxes
         ctx.fillStyle = 'white';
         ctx.fillRect(this.game.canvas.width / 2 - 100, this.game.canvas.height - 100, 200, 50);
         ctx.fillRect(this.game.canvas.width / 2 -250, 65, 500, 50);
 
+        // Draw Text
         ctx.textAlign = "center";
         ctx.font = "30px Arial";
         ctx.fillStyle = 'black';
@@ -35,8 +39,13 @@ class IntroScreen extends GameScreen {
 
         if(isPressed) {
             if(this.startButton.checkIfPressed(isPressed)) {
-                console.log('jij drukke op die KNOP!!!' + Math.random());
+                this.nextScreen = true;
             }
         }
+    }
+
+    public adjust(game: Game) {
+        if(this.nextScreen)
+            game.switchScreen(new HackGroomerScreen(game));
     }
 }
