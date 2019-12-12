@@ -55,10 +55,10 @@ class Game {
      * @param newScreen the screen to switch to
      */
     public switchScreen(newScreen: GameScreen) {
-        if (newScreen == null) {
+        if (newScreen === null) {
             throw new Error("newScreen cannot be null");
         }
-        if (newScreen != this.currentScreen) {
+        if (newScreen !== this.currentScreen) {
             this.currentScreen = newScreen;
         }
     }
