@@ -1,5 +1,5 @@
 ECHO is on.
-Raw\ assets/
+Raw-assets/
 node_modules/
 .vscode
 .idea
