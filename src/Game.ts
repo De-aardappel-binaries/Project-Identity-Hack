@@ -24,7 +24,7 @@ class Game {
         this.scores = new Scores();
 
         // Set the initial screen
-        this.currentScreen = new IntroScreen(this);
+        this.currentScreen = new FakeProfileScreen(this);
 
         this.loop();
     }
