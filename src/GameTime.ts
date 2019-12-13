@@ -18,7 +18,7 @@ class GameTime {
         clearInterval(GameTime.timer);
     }
 
-    public static getTime() {
-        return GameTime.time;
+    public static returnTime() {
+        return Math.floor(GameTime.time / 60) + ':' + GameTime.time % 60;
     }
 }

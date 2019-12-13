@@ -26,7 +26,7 @@ class Game {
         this.gameTime = new GameTime(300);
 
         // Set the initial screen
-        this.currentScreen = new FakeProfileScreen(this);
+        this.currentScreen = new IntroScreen(this);
 
         this.loop();
     }

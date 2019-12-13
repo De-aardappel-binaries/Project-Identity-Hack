@@ -13,7 +13,7 @@ class HackGroomerScreen extends GameScreen{
     private keyboardListener: UserInput;
 
     public draw(ctx: CanvasRenderingContext2D) {
-        console.log(GameTime.getTime())
+        console.log(GameTime.returnTime())
     }
 
     /**
