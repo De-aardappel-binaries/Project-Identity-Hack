@@ -23,7 +23,7 @@ class Game {
         // Instantiate all other attributes
         this.input = new UserInput();
         this.scores = new Scores();
-        this.gameTime = new GameTime(300);
+        GameTime.setTime(300);
 
         // Set the initial screen
         this.currentScreen = new IntroScreen(this);
@@ -46,6 +46,26 @@ class Game {
  
         // Let the current screen adjust itself
         this.currentScreen.adjust(this);
+
+        // Draw Game Time
+        if(!(
+            this.currentScreen instanceof EndScoreScreen || 
+            this.currentScreen instanceof IntroScreen || 
+            this.currentScreen instanceof LostScreen
+        )) {
+            
+        if(GameTime.returnTime() <= 0) {
+            this.switchScreen(new LostScreen(this));
+        }
+            this.ctx.textAlign = "right";
+            this.ctx.font = "30px Arial";
+            this.ctx.fillStyle = 'white';
+            this.ctx.fillRect(this.canvas.width -100, 0, 100, 75);
+            this.ctx.fillStyle = 'black';
+            this.ctx.fillText(GameTime.returnTimeFormatted(), this.canvas.width - 25, 50);
+            this.ctx.rect(this.canvas.width -100, 0, 100, 75);
+            this.ctx.stroke(); 
+        }
 
         // Request the next animation frame
         requestAnimationFrame(this.loop);
