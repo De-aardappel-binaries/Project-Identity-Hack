@@ -1,10 +1,6 @@
 // tslint:disable member-ordering
 
 class GameTime {
-<<<<<<< HEAD
-=======
-
->>>>>>> 004bb6c7690bf27f31f6f5c7837ea4ddfab89397
     private static time: number;
 
     private static timer: number;
@@ -52,16 +48,11 @@ class GameTime {
         return `${min}:${sec}`;
     }
 
-<<<<<<< HEAD
-    public static returnTime(): String {
-        return Math.floor(GameTime.time / 60) + ':' + GameTime.time % 60;
-=======
     /**
      * Removes time of timer
      * @param time Amount of seconds
      */
     public static removeTime(time: number) {
         GameTime.time = GameTime.time - time;
->>>>>>> 004bb6c7690bf27f31f6f5c7837ea4ddfab89397
     }
 }
