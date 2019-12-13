@@ -1,8 +1,6 @@
 // tslint:disable member-ordering
 
 class GameTime {
-    private readonly canvas: HTMLCanvasElement;
-    private readonly ctx: CanvasRenderingContext2D;
     private static time: number;
 
     private static timer: any;
@@ -18,7 +16,7 @@ class GameTime {
         clearInterval(GameTime.timer);
     }
 
-    public static returnTime() {
+    public static returnTime(): String {
         return Math.floor(GameTime.time / 60) + ':' + GameTime.time % 60;
     }
 }

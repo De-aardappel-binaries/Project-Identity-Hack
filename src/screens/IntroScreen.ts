@@ -47,6 +47,6 @@ class IntroScreen extends GameScreen {
 
     public adjust(game: Game) {
         if(this.nextScreen)
-            game.switchScreen(new FakeProfileScreen(game));
+            game.switchScreen(new HackGroomerScreen(game));
     }
 }
