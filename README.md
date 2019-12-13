@@ -1,4 +1,4 @@
-# Project: Escape Room
+# Project: Identity Hack
 
 Protagonist: Is een white hat hacker die werkt voor de overheid om kinder groomers te ontmaskeren.
 
@@ -11,23 +11,45 @@ Antagonist: De groomer
 Setting: Een browser.
 
 Thema’s die terug moeten komen in de puzzels:
-1.	Nep profielen
-2.	Wachtwoorden
+1.	Wachtwoorden
+2.	Nep profielen
 3.	Deepfakes
-4.	Datalekken
+4.	Chatten
 
-Bij voltooiing van een puzzel wordt bepaald hoeveel groomer coins je krijgt op basis van hoeveel tijd je nog over hebt. Als je een puzzel voltooid buiten de timer, dan krijg je minimaal aantal punten.
-
-Groomer coins kunnen gebruikt worden om hacking tools te kopen waarmee je de het volgende level kunt spelen of upgrades om meer groomer coins te verdienen, zoals extra tijd of hints.
+Bij voltooiing van een puzzel wordt bepaald hoeveel G-coins je krijgt op basis van hoeveel tijd je nog over hebt. Als je een puzzel voltooid buiten de timer, dan krijg je niets en moet je opnieuw beginnen.
+G-coins kunnen gebruikt worden om hacking tools te kopen waarmee je de het volgende level kunt spelen of upgrades om meer G-coins te verdienen, zoals extra tijd of hints.
 
 Start van het spel: Eerst ga je achter een groomer. Je hebt van een anoniem persoon een tip gehad. Die persoon probeert een meisje van 14 over te halen om seks met hem te hebben. Terwijl zij dat niet wil.
 
--Je hebt van de rechter permissie gekregen om die persoon te hacken en te kijken wat die groomer allemaal uitspookt.
+Je hebt toestemming van de rechter gekregen om die persoon te hacken en te kijken wat die groomer allemaal uitspookt.
+ 
+## Wachtwoord puzzel
+Je wil weten wat de groomer uitspookt op zijn computer. Deze is
+echter beveiligd met een speciaal wachtwoord. Deze ga je hacken.
 
-Eerste puzzel: Je gaat die persoon hacken (nananana hack time!)
+Het spel werkt vergelijkbaar met galgje en Fallout hacken.
 
-Tweede puzzel: Je hebt de groomer gehackt nu ga je kijken wat voor praktijken hij uitvoerd. Je gaat zijn profielen uitzoeken en kijken welke nep en echt zijn. (nananana hack time!).
+## Profiel puzzel
+Je hebt de groomer gehackt nu ga je kijken wat voor praktijken hij uitvoerd. Je gaat zijn profielen uitzoeken en kijken welke nep en echt zijn.
 
-Derde puzzel: Je vind rare software op de groomers zijn laptop. Het blijkt deepfake software te zijn. Je kijkt waarvoor de gebruiker deepfake gebruikt. Je moet een rapport schrijven voor je baas. Zoek de verschillen en noteer ze(nananana hack time!)
+De gebruiker krijgt 5 social media profielen te zien. 3 hiervan zijn nep, 2 zijn
+echt. De speler moet aangeven of hij/zij denkt dat deze echt of nep is. Bij een
+goed antwoord gaat de speler gewoon door naar de volgende, maar bij een
+fout antwoord wordt er tijd van de totale speeltijd afgehaald. Is de speler
+voorbij het laatste profiel, dan gaat hij/zij door naar het volgende spel.
 
-Laatste puzzel: Uiteindelijk vind je de chat app van de groomer. Vind het slachtoffer en de locatie van de groomer zelf. Heb je ze gevonden? Top je hebt dan gewonnen.
+## Deepfake puzzel
+Je vind rare software op de groomers zijn laptop. Het blijkt deepfake software te zijn. Je kijkt waarvoor de gebruiker deepfake gebruikt. Je moet een rapport schrijven voor je baas. Zoek de verschillen en noteer ze.
+
+De gebruiker krijgt een scherm met twee helften. Er worden telkens twee
+afbeeldingen laten zien. één originele en één deepfake. De speler moet op de
+verschillen drukken. Drukt de speler op iets wat geen verschil is, dan wordt er
+tijd van de totale speeltijd afgetrokken. Als de speler alle verschillen heeft
+gevonden kan de speler naar het volgende spel.
+
+## Chat puzzel
+Uiteindelijk vind je de chat app van de groomer. Vind het slachtoffer en de locatie van de groomer zelf. Heb je ze gevonden? Top je hebt dan gewonnen.
+
+De speler krijgt een scherm net zoals whatsapp web. De speler moet door de
+chat berichten zoeken waar de adres gegevens van de groomer en het
+slachtoffer staan.
