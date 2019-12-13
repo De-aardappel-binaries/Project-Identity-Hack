@@ -30,11 +30,11 @@ class DeepFakeScreen extends GameScreen {
         super(game);
 
         let imageoriginal = new Image();
-        imageoriginal.src = "C:/Users/laure/Desktop/project school/Project-Identity-Hack/assets/images/iWljgsxiCGvQsEPR.jpg"; // orignele Image
+        imageoriginal.src = "./assets/images/iWljgsxiCGvQsEPR.jpg"; // orignele Image
         this.origninal = imageoriginal;
 
         let imageDeepfake = new Image();
-        imageDeepfake.src = "C:/Users/laure/Desktop/project school/Project-Identity-Hack/assets/images/iWljgsxiCGvQsEPR.jpg"; // deepfakeImage 
+        imageDeepfake.src = "./assets/images/iWljgsxiCGvQsEPR.jpg"; // deepfakeImage 
         this.deepfakeimage = imageDeepfake
 
         
