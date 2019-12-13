@@ -4,8 +4,11 @@
 class FakeProfileScreen extends GameScreen {
     public currentProfile: any;
     public profileImageUrls: Array<string>;
+    private topNavImage: HTMLImageElement;
     private logoImage: HTMLImageElement;
     private searchBarImage: HTMLImageElement;
+    private profilePicLineImage: HTMLImageElement;
+    private profileTextImage : HTMLImageElement;
 
     public constructor(game: Game) {
         super(game);
@@ -13,19 +16,34 @@ class FakeProfileScreen extends GameScreen {
         document.getElementById('body').style.backgroundImage = "";
         document.getElementById('body').style.backgroundColor = "#e4e4e4";
 
+        let topNavImg = new Image();
+        topNavImg.src = "./assets/images/FPTopNav.png";
+        this.topNavImage = topNavImg;
+
         let logoImg = new Image();
         logoImg.src = "./assets/images/FPlogo.png";
         this.logoImage = logoImg;
         
         let searchBarImg = new Image();
-        searchBarImg.src = "./assets/images/FPSearchBar.png"
+        searchBarImg.src = "./assets/images/FPSearchBar.png";
         this.searchBarImage = searchBarImg;
+
+        let profilePicLineImg = new Image();
+        profilePicLineImg.src = "./assets/images/FPProfilePicLine.png";
+        this.profilePicLineImage = profilePicLineImg;
+
+        let profileTextImg = new Image();
+        profileTextImg.src = "./assets/images/FPProfileText.png";
+        this.profileTextImage = profileTextImg;
     }
 
     public listen(input: UserInput){}
 
     public draw(ctx: CanvasRenderingContext2D) {
+        ctx.drawImage(this.topNavImage, 0, 0, this.game.canvas.width, 74);
         ctx.drawImage(this.logoImage, 10, 10, 54, 54);
         ctx.drawImage(this.searchBarImage, this.game.canvas.width - 650, 10);
+        ctx.drawImage(this.profilePicLineImage, this.game.canvas.width / 2 - 50, this.game.canvas.height / 2 - 250, 100, 100);
+        ctx.drawImage(this.profileTextImage, this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
     }
 }
