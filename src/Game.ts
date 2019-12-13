@@ -7,6 +7,7 @@ class Game {
     public readonly ctx: CanvasRenderingContext2D;
     public readonly input: UserInput;
     public readonly scores: Scores;
+    public readonly gameTime: GameTime;
 
     // Holds the screen that must be displayed each loop
     private currentScreen: GameScreen;
@@ -22,6 +23,7 @@ class Game {
         // Instantiate all other attributes
         this.input = new UserInput();
         this.scores = new Scores();
+        this.gameTime = new GameTime(300);
 
         // Set the initial screen
         this.currentScreen = new FakeProfileScreen(this);

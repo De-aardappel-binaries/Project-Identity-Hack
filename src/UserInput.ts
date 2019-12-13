@@ -5,6 +5,7 @@ class UserInput {
     
     // Fields that hold the state of the mouse
     private position : Pos;
+    private holdButton: boolean = false;
     private buttonDown : boolean = false;
 
     // Array that holds the state of all keys
@@ -29,7 +30,12 @@ class UserInput {
      */
     public GetMousePressed(): Pos
     {
-        return this.buttonDown ? this.position : null;
+        if(!this.holdButton) {
+            this.holdButton = true;
+            return this.mouseUp ? this.position : null;
+        } else {
+            return null;
+        }
     }
 
     // TODO add methods that expose the mouse state to the game
@@ -50,6 +56,7 @@ class UserInput {
      */
     private mouseUp = (ev: MouseEvent) => {
         this.buttonDown = false;
+        this.holdButton = false;
     }
 
     /*

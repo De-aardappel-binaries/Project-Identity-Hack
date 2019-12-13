@@ -2,14 +2,14 @@ class UIButton {
 
     private readonly xStart: number;    
     private readonly yStart: number;
-    private readonly xEnd: number;
-    private readonly yEnd: number;    
+    private readonly width: number;
+    private readonly height: number;    
     
-    public constructor(xStart: number, yStart: number, xEnd: number, yEnd: number) {
+    public constructor(xStart: number, yStart: number, width: number, height: number) {
         this.xStart = xStart;
         this.yStart = yStart;
-        this.xEnd = xEnd;
-        this.yEnd = yEnd;
+        this.width = width;
+        this.height = height;
     }
 
     /**
@@ -18,9 +18,9 @@ class UIButton {
      */
     public checkIfPressed(ClickPos: Pos): boolean {
         return ClickPos.xPos > this.xStart && 
-               ClickPos.xPos <  this.xEnd &&
+               ClickPos.xPos <  this.xStart + this.width &&
                ClickPos.yPos > this.yStart &&
-               ClickPos.yPos < this.yEnd;
+               ClickPos.yPos < this.yStart + this.height;
 
     }
 
