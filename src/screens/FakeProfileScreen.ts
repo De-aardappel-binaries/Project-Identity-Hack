@@ -9,6 +9,10 @@ class FakeProfileScreen extends GameScreen {
     private searchBarImage: HTMLImageElement;
     private profilePicLineImage: HTMLImageElement;
     private profileTextImage : HTMLImageElement;
+    private realButtonImage : HTMLImageElement;
+    private fakeButtonImage : HTMLImageElement;
+    private realButton : UIButton;
+    private fakeButton : UIButton;
 
     public constructor(game: Game) {
         super(game);
@@ -35,9 +39,32 @@ class FakeProfileScreen extends GameScreen {
         let profileTextImg = new Image();
         profileTextImg.src = "./assets/images/FPProfileText.png";
         this.profileTextImage = profileTextImg;
+
+        let realButtonImg = new Image();
+        realButtonImg.src = "./assets/images/EchtButton.png";
+        this.realButtonImage = realButtonImg;
+
+        this.realButton = new UIButton(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200, 298, 149);
+
+        let fakeButtonImg = new Image();
+        fakeButtonImg.src = "./assets/images/NepButton.png";
+        this.fakeButtonImage = fakeButtonImg;
+
+        this.fakeButton = new UIButton(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149);
     }
 
-    public listen(input: UserInput){}
+    public listen(input: UserInput){
+        const isPressed = input.GetMousePressed();
+
+        if(isPressed) {
+            if(this.realButton.checkIfPressed(isPressed)) {
+                console.log("ECHT!"); // werkt
+            }
+            if(this.fakeButton.checkIfPressed(isPressed)) {
+                console.log("NEP!"); // werkt
+            }
+        }
+    }
 
     public draw(ctx: CanvasRenderingContext2D) {
         ctx.drawImage(this.topNavImage, 0, 0, this.game.canvas.width, 74);
@@ -45,5 +72,9 @@ class FakeProfileScreen extends GameScreen {
         ctx.drawImage(this.searchBarImage, this.game.canvas.width - 650, 10);
         ctx.drawImage(this.profilePicLineImage, this.game.canvas.width / 2 - 50, this.game.canvas.height / 2 - 250, 100, 100);
         ctx.drawImage(this.profileTextImage, this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
+        ctx.drawImage(this.realButtonImage, this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200);
+        ctx.drawImage(this.fakeButtonImage, this.game.canvas.width / 2, this.game.canvas.height / 2 + 200);
     }
+
+
 }
