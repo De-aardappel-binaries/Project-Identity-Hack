@@ -1,7 +1,6 @@
 // tslint:disable member-ordering
 
 class GameTime {
-
     private static time: number;
 
     private static timer: number;
