@@ -4,12 +4,14 @@
 class DeepFakeScreen extends GameScreen {
 
     private origninal: HTMLImageElement;
-    private deepfakeimage: HTMLImageElement
-    private startButton: UIButton;
+    private deepfakeimage: HTMLImageElement;
+    private differenceButtom1: UIButton;
+    private differenceButtom2: UIButton;
 
     // private readonly canvas: HTMLCanvasElement;
     // private readonly ctx: CanvasRenderingContext2D;
     public DeepFakeList: Array<Deepfake>
+    
     public draw(ctx: CanvasRenderingContext2D) {
         // Draw boxes
         ctx.fillStyle = 'white';
@@ -37,9 +39,10 @@ class DeepFakeScreen extends GameScreen {
         this.game.canvas.width/10*3.5,
         this.game.canvas.height * this.game.canvas.width / this.game.canvas.height/2 )
 
-
-        ctx.fillStyle = "white"
-        //ctx.fillRect( this.game.canvas.width / 4 * 3 , this.deepfakeimage.width / 2, 100,100)
+        // this.game.ctx.fillStyle = "white"
+        // this.game.ctx.fillRect( this.game.canvas.width / 4 * 2.78 , this.deepfakeimage.width / 0.82, 50,50);
+        
+        
     }
 
 
@@ -48,11 +51,15 @@ class DeepFakeScreen extends GameScreen {
     public listen(input: UserInput) { 
         const isPressed = input.GetMousePressed();
         if(isPressed){
-            if(this.startButton.checkIfPressed(isPressed)) {
-                console.log("klik")
+            if(this.differenceButtom1.checkIfPressed(isPressed)) {
+                console.log("inderdaad1")
             }
-            
+            if(this.differenceButtom2.checkIfPressed(isPressed)) {
+                console.log("inderdaad2")
+            }
         }
+            
+        
     }
 
     constructor(game: Game) {
@@ -66,8 +73,30 @@ class DeepFakeScreen extends GameScreen {
         imageDeepfake.src = "./assets/images/deepfake.jpg"; // deepfakeImage 
         this.deepfakeimage = imageDeepfake
 
-        this.startButton = new UIButton(this.game.canvas.width / 4 * 3 , this.deepfakeimage.width / 2, 100,100);
         
+
+        //Deze functie zorgt ervoor dat de klikbutton op de goede plaats komt
+        let imageLoadWaiter1 = setInterval(() => {
+            if (this.deepfakeimage.width !== 0){
+                this.differenceButtom1 = new UIButton(this.game.canvas.width / 4 * 2.78 , this.deepfakeimage.width / 1.7, 50,50);
+                
+                
+                clearInterval(imageLoadWaiter1)
+            }
+        }, 100);
+        
+        let imageLoadWaiter2 = setInterval(() => {
+            if (this.deepfakeimage.width !== 0){
+                this.differenceButtom2 = new UIButton(this.game.canvas.width / 4 * 2.78 , this.deepfakeimage.width / 0.82, 50,50);
+                
+                
+                clearInterval(imageLoadWaiter2)
+            }
+        }, 100);
+        
+        
+        
+
         
     }
 
