@@ -9,27 +9,26 @@ class ChatScreen extends GameScreen {
             chatMessages: [
                 { message: 'Hoi, hoe gaat het met jou?', self: true },
                 { message: 'Hey, goed. Wie is dit?', self: false },
-                { message: 'Ik ben Gerard, en wie ben jij?', self: true },
-                { message: 'Sindy, maar wat moet je met mijn nummer?', self: false, groomerDetail: 1 }
+                { message: 'Ik ben Gerard, en wie ben jij?', self: true, groomerDetail: 1 },
+                { message: 'Cindy, maar wat moet je met mijn nummer?', self: false }
             ]
         },
         {
             chatName: 'Abby',
             chatMessages: [
-                { message: 'Hoi, hoe gaat het met jou?', self: true },
-                { message: 'Ja, goed wie is dit?', self: false },
-                { message: 'Mijn naam is Gerard. Wie ben jij?', self: true },
-                { message: 'Abby, maar ken ik jou?', self: false },
-                { message: 'Hoe heb je mijn nummer gevonden?', self: false, groomerDetail: 1 }
+                { message: 'Ga je nu nog die foto\'s doorsturen?', self: true },
+                { message: 'Nee, ik heb dat al vaker gestuurd?', self: false },
+                { message: 'Alsjeblieft?', self: true },
+                { message: '< U bent geblokkeerd >', self: false }
             ]
         },
         {
             chatName: 'Tessa',
             chatMessages: [
-                { message: 'Hoi, hoe gaat het met je?', self: true },
-                { message: 'Goed. Maar wie ben jij?', self: false },
-                { message: 'Ik ben Gerard, aangenaam. :)', self: true },
-                { message: 'Ik ken jou niet. Wat wil je van me?', self: false, groomerDetail: 1 }
+                { message: 'He! doe is ff normaal met mijn vriendin!', self: false },
+                { message: 'Wat bedoel je, ben je de vriendin van Cindy ofzo?', self: true, groomerDetail: 1 },
+                { message: 'Ja, laat haar met rust ofzo!', self: false },
+                { message: 'Gek!', self: false }
             ]
         },
         {
@@ -83,7 +82,14 @@ class ChatScreen extends GameScreen {
             });
         });
 
-        this.dialogueCharacter.createDialogue(['Je hebt de chat app gevonden', 'je gaat nu zoeken naar info die kan helpen', 'klik op de berichten die belangrijk bewijs zijn', 'Veel geluk!']);
+        this.dialogueCharacter.createDialogue([
+            'Je hebt de chat app gevonden', 
+            'Je gaat nu zoeken naar info die kan helpen-', 
+            'met het vinden van de dader en slachtoffer', 
+            'Klik op de berichten die belangrijk bewijs zijn', 
+            'Onder links staan het aantal hints',
+            'Veel geluk!'
+        ]);
     }
     
     public draw(ctx: CanvasRenderingContext2D) {
@@ -134,7 +140,7 @@ class ChatScreen extends GameScreen {
             ctx.fillText(User.chatName, this.game.canvas.width * 0.1 + 10, (100 * (index + 1) - 60));
             ctx.fillStyle = "darkgray";
             ctx.font = "18px Arial";
-            ctx.fillText(User.chatMessages[0].message, this.game.canvas.width * 0.1 + 10, (100 * (index + 1) - 30));
+            ctx.fillText(User.chatMessages[0].message.substr(0,30) + (User.chatMessages[0].message.length > 30 ? '...' : ''), this.game.canvas.width * 0.1 + 10, (100 * (index + 1) - 30));
         })
 
         // Draw hints
