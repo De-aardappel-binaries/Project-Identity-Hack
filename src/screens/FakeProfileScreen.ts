@@ -12,9 +12,13 @@ class FakeProfileScreen extends GameScreen {
     private profileTextImage : HTMLImageElement;
     private realButtonImage : HTMLImageElement;
     private fakeButtonImage : HTMLImageElement;
+    private nextLevelButtonImage : HTMLImageElement;
     private realButton : UIButton;
     private fakeButton : UIButton;
+    private nextLevelButton : UIButton;
     private nextScreen: boolean;
+    private showNextLevelButton : boolean;
+    private dialogeCharacter: DialogueCharacter;
 
     public constructor(game: Game) {
         super(game);
@@ -57,6 +61,16 @@ class FakeProfileScreen extends GameScreen {
         this.fakeButtonImage = fakeButtonImg;
 
         this.fakeButton = new UIButton(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149);
+
+        let nextLevelButtonImg = new Image();
+        nextLevelButtonImg.src = "./assets/images/VolgendLevelButton.png";
+        this.nextLevelButtonImage = nextLevelButtonImg;
+
+        this.nextLevelButton = new UIButton(20, 100, 200, 100);
+        
+        this.showNextLevelButton = false;
+
+        this.dialogeCharacter = new DialogueCharacter();
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
@@ -69,6 +83,9 @@ class FakeProfileScreen extends GameScreen {
         ctx.drawImage(this.profileTextImage, this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
         ctx.drawImage(this.realButtonImage, this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200);
         ctx.drawImage(this.fakeButtonImage, this.game.canvas.width / 2, this.game.canvas.height / 2 + 200);
+        if(this.showNextLevelButton) {
+            ctx.drawImage(this.nextLevelButtonImage, 20, 100);
+        }
 
         // draw text
         ctx.textAlign = "center";
@@ -76,20 +93,35 @@ class FakeProfileScreen extends GameScreen {
         ctx.fillStyle = 'black';
         ctx.fillText("Ik ben een vrolijke, 15-jarige jongen", this.game.canvas.width / 2, this.game.canvas.height / 2);
         ctx.fillText("op zoek naar nieuwe vrienden.", this.game.canvas.width / 2, this.game.canvas.height / 2 + 30);
+
+        this.dialogeCharacter.drawCharacter(ctx, this.game.canvas);
     }
     
     public listen(input: UserInput){
         const isPressed = input.GetMousePressed();
+        this.dialogeCharacter.nextDialogueHandler(isPressed);
 
         if(isPressed) {
             if(this.realButton.checkIfPressed(isPressed)) {
                 // console.log("ECHT!"); // werkt
-                this.nextScreen = true;
+                this.dialogeCharacter.createDialogue([
+                    "Dat antwoord was correct!",
+                    "Snel door naar het volgende level!"
+                ]);
+                this.showNextLevelButton = true;
             }
             if(this.fakeButton.checkIfPressed(isPressed)) {
                 // console.log("NEP!"); // werkt
-                GameTime.removeTime(5);
-                this.nextScreen = true;
+                this.dialogeCharacter.createDialogue([
+                    "Dat antwoord was helaas fout. -10 seconden!",
+                    "Probeer het opnieuw!"
+                ]);
+                GameTime.removeTime(10);
+            }
+            if(this.nextLevelButton.checkIfPressed(isPressed)) {
+                if(this.showNextLevelButton) {
+                    this.nextScreen = true;
+                }
             }
         }
     }

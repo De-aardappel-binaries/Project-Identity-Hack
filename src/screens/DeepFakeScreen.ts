@@ -7,7 +7,7 @@ class DeepFakeScreen extends GameScreen {
     private deepfakeimage: HTMLImageElement;
     private differenceButtom1: UIButton;
     private differenceButtom2: UIButton;
-    private dialogeCharacter: dialogueCharacter;
+    private dialogeCharacter: DialogueCharacter;
     // private readonly canvas: HTMLCanvasElement;
     // private readonly ctx: CanvasRenderingContext2D;
     public DeepFakeList: Array<Deepfake>
@@ -119,7 +119,7 @@ class DeepFakeScreen extends GameScreen {
         }, 100);
         
         
-        this.dialogeCharacter = new dialogueCharacter();
+        this.dialogeCharacter = new DialogueCharacter();
         this.dialogeCharacter.createDialogue([
             'zoek de 2 verschillen', 
             

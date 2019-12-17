@@ -7,38 +7,39 @@ class ChatScreen extends GameScreen {
         {
             chatName: 'Sindy',
             chatMessages: [
-                { message: 'Hoi hoe gaat het met jou', self: true },
-                { message: 'Ja, goed wie is dit?', self: false },
-                { message: 'Ik ben jan peter balkende en wij ben jij?', self: true },
-                { message: 'Sindy, waar wat moet je met mijn nummer?', self: false, groomerDetail: 1 }
+                { message: 'Hoi, hoe gaat het met jou?', self: true },
+                { message: 'Hey, goed. Wie is dit?', self: false },
+                { message: 'Ik ben Gerard, en wie ben jij?', self: true },
+                { message: 'Sindy, maar wat moet je met mijn nummer?', self: false, groomerDetail: 1 }
             ]
         },
         {
             chatName: 'Abby',
             chatMessages: [
-                { message: 'Wolla broer', self: true },
+                { message: 'Hoi, hoe gaat het met jou?', self: true },
                 { message: 'Ja, goed wie is dit?', self: false },
-                { message: 'Ik ben jan peter balkende en wij ben jij?', self: true },
-                { message: 'Abby, waar wat moet je met mijn nummer?', self: false }
+                { message: 'Mijn naam is Gerard. Wie ben jij?', self: true },
+                { message: 'Abby, maar ken ik jou?', self: false },
+                { message: 'Hoe heb je mijn nummer gevonden?', self: false, groomerDetail: 1 }
             ]
         },
         {
             chatName: 'Tessa',
             chatMessages: [
-                { message: 'Hoi hoe gaat het met jou', self: true },
-                { message: 'Ja, goed wie is dit?', self: false },
-                { message: 'Ik ben jan peter balkende en wij ben jij?', self: true },
-                { message: 'Tessa, waar wat moet je met mijn nummer?', self: false }
+                { message: 'Hoi, hoe gaat het met je?', self: true },
+                { message: 'Goed. Maar wie ben jij?', self: false },
+                { message: 'Ik ben Gerard, aangenaam. :)', self: true },
+                { message: 'Ik ken jou niet. Wat wil je van me?', self: false, groomerDetail: 1 }
             ]
         },
         {
             chatName: 'Piet',
             chatMessages: [
-                { message: 'He, Dikke', self: true },
-                { message: 'Vannavond bij mij chille?', self: true },
+                { message: 'He, gozer', self: true },
+                { message: 'Vanavond bij mij chillen?', self: true },
                 { message: 'Ja is goed, kan je je adres nog eens door sturen?', self: false },
-                { message: 'Afslag staat 69', self: true, groomerDetail: 1 },
-                { message: 'Oké tot vannavond.', self: false }
+                { message: 'Steenstraat 69', self: true, groomerDetail: 1 },
+                { message: 'Oké tot vanavond', self: false }
             ]
         }
     ];
@@ -196,7 +197,7 @@ class ChatScreen extends GameScreen {
 
                         if(this.Chats[this.currentChat].chatMessages[index].groomerDetail === 1) {
 
-                            this.dialogueCharacter.createDialogue(['Je hebt goed detail gevonden']);
+                            this.dialogueCharacter.createDialogue(['Je hebt een goed detail gevonden']);
                             this.Chats[this.currentChat].chatMessages[index].groomerDetail = 2;
                             this.hints--;
 
@@ -206,9 +207,9 @@ class ChatScreen extends GameScreen {
 
                         } else {
 
-                            this.dialogueCharacter.createDialogue(['Dit is geen waardevolle info, foei', 'Dit gaat van je tijd af']);
+                            this.dialogueCharacter.createDialogue(['Dit is geen waardevolle info', 'Dit gaat van je tijd af']);
                             this.Chats[this.currentChat].chatMessages[index].groomerDetail = 2;
-                            GameTime.removeTime(50);
+                            GameTime.removeTime(30);
 
                         }
 
