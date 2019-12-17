@@ -5,9 +5,10 @@ class HackGroomerScreen extends GameScreen{
     
     private readonly grid: number = 10;
     private readonly buttonSize: number = 50;
+    private gridButton: Array<Array<UIButton>> = [];
 
 
-    private abc = 'abcdefghijklmnopqrstuvwxyz';
+    private abc = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
     private startPoint: Pos;
 
     constructor(game: Game) {
@@ -17,8 +18,20 @@ class HackGroomerScreen extends GameScreen{
             xPos: (game.canvas.width - (this.buttonSize * this.grid)) / 2, 
             yPos: 200
         }
-
+        this.randomizeString();
         // randomize hier de abc string
+
+        for(let y = 0; y < this.grid; y++) {
+            this.gridButton[y] = [];
+            for(let x = 0; x < this.grid; x++) {
+                this.gridButton[y][x] = new UIButton(
+                    this.startPoint.xPos + (x * this.buttonSize), 
+                    this.startPoint.yPos + (y * this.buttonSize),
+                    this.buttonSize,
+                    this.buttonSize
+                );
+            }
+        }
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
@@ -57,7 +70,33 @@ class HackGroomerScreen extends GameScreen{
         }
     }
 
-    public listen(input: UserInput) {
-        
+    private randomizeString(){
+        for (let i = 0; i < 50; i++) {
+            let firstRandomizer = Math.round((this.abc.length -1) * Math.random());
+            let secondRandomizer = Math.round((this.abc.length -1) * Math.random());
+            let temp = this.abc[firstRandomizer];
+            this.abc[firstRandomizer] = this.abc[secondRandomizer];
+            this.abc[secondRandomizer] = temp;  
+        }
+    }
+
+    public listen(input: UserInput){
+        const isPressed = input.GetMousePressed();
+        let count = 0;
+        if(isPressed) {
+            for(let y = 0; y < this.grid; y++) {
+                for(let x = 0; x < this.grid; x++) {
+                    if(this.gridButton[y][x].checkIfPressed(isPressed)) {
+                        console.log(this.abc[count]);
+                        return;
+                    }
+ 
+                    if(this.abc.length-1 == count)
+                        count = 0;
+                    else
+                        count++;
+                }
+            }
+        }
     }
 }
