@@ -96,8 +96,7 @@ class DeepFakeScreen extends GameScreen {
         imageDeepfake.src = "./assets/images/deepfake.jpg"; // deepfakeImage 
         this.deepfakeimage = imageDeepfake
 
-        
-        
+        document.getElementById('body').style.backgroundImage = "url('https://live.staticflickr.com/684/32192716655_b94c77c8c3_b.jpg')";        
 
         //Deze functie zorgt ervoor dat de klikbutton op de goede plaats komt
         let imageLoadWaiter1 = setInterval(() => {
