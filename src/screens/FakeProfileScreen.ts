@@ -71,6 +71,10 @@ class FakeProfileScreen extends GameScreen {
         this.showNextLevelButton = false;
 
         this.dialogeCharacter = new DialogueCharacter();
+
+        this.dialogeCharacter.createDialogue([
+            "Zoek uit of dit profiel echt of nep is."
+        ]);
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
@@ -102,7 +106,7 @@ class FakeProfileScreen extends GameScreen {
         this.dialogeCharacter.nextDialogueHandler(isPressed);
 
         if(isPressed) {
-            if(this.realButton.checkIfPressed(isPressed)) {
+            if(this.fakeButton.checkIfPressed(isPressed)) {
                 // console.log("ECHT!"); // werkt
                 this.dialogeCharacter.createDialogue([
                     "Dat antwoord was correct!",
@@ -110,7 +114,7 @@ class FakeProfileScreen extends GameScreen {
                 ]);
                 this.showNextLevelButton = true;
             }
-            if(this.fakeButton.checkIfPressed(isPressed)) {
+            if(this.realButton.checkIfPressed(isPressed)) {
                 // console.log("NEP!"); // werkt
                 this.dialogeCharacter.createDialogue([
                     "Dat antwoord was helaas fout. -10 seconden!",
@@ -128,6 +132,6 @@ class FakeProfileScreen extends GameScreen {
 
     public adjust(game: Game) {
         if(this.nextScreen)
-            game.switchScreen(new DeepFakeScreen(game));
+            game.switchScreen(new ChatScreen(game));
     }
 }
