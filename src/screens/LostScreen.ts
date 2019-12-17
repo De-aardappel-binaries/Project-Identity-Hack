@@ -3,12 +3,12 @@
 
 class LostScreen extends GameScreen {
 
-    private dialogeCharacter: dialogueCharacter;
+    private dialogeCharacter: DialogueCharacter;
 
     constructor(game: Game) {
         super(game);
 
-        this.dialogeCharacter = new dialogueCharacter();
+        this.dialogeCharacter = new DialogueCharacter();
         this.dialogeCharacter.createDialogue([
             'He! jammer joh.', 
             'je bent ontslagen.', 

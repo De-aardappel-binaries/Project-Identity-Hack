@@ -1,6 +1,6 @@
-class dialogueCharacter {
+class DialogueCharacter {
 
-    private xPos: number = -20;
+    private xPos: number = -400;
     private dialogue: Array<string> = [];
     private dialogueCharacterImage: HTMLImageElement;
 
@@ -41,8 +41,6 @@ class dialogueCharacter {
         this.xPos = -400;
 
         const animation: number = setInterval(() => {
-            console.log(this.dialogue);
-
             if(this.xPos >= 0)
                 clearInterval(animation);
             
@@ -58,8 +56,6 @@ class dialogueCharacter {
         this.xPos = 0;
 
         const animation: number = setInterval(() => {
-            console.log(this.dialogue);
-
             if(this.xPos <= -400)
                 clearInterval(animation);
             
@@ -70,24 +66,25 @@ class dialogueCharacter {
 
     /**
      * this functions adds dialoge to the character
-     * @param dialoge array of separete messages
+     * @param dialogue array of separete messages
      */
-    public createDialogue(dialoge: Array<string>) {
+    public createDialogue(dialogue: Array<string>) {
         if(this.dialogue.length == 0) {
-            this.dialogue = dialoge;
+            this.dialogue = dialogue;
             this.showCharacter();
         }
 
-        this.dialogue.concat(dialoge);
+        this.dialogue.concat(dialogue);
     }
 
     /**
      * Go's to next dialoge
      */
-    public nextDialogueHandler(input: UserInput) {
-        const isPressed = input.GetMousePressed();
-
-        if(isPressed) {
+    public nextDialogueHandler(input: UserInput | Pos) {
+        if (input instanceof UserInput)
+            input = input.GetMousePressed();
+            
+        if(input) {
             if(this.dialogue.length == 1)
                 this.hideCharacter();
             

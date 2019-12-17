@@ -58,6 +58,8 @@ class Game {
             this.switchScreen(new LostScreen(this));
         }
             this.ctx.textAlign = "right";
+            this.ctx.textBaseline = "bottom";
+            this.ctx.strokeStyle = "black";
             this.ctx.font = "30px Arial";
             this.ctx.fillStyle = 'white';
             this.ctx.fillRect(this.canvas.width -100, 0, 100, 75);
