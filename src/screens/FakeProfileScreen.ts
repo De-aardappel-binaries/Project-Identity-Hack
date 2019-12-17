@@ -14,6 +14,7 @@ class FakeProfileScreen extends GameScreen {
     private fakeButtonImage : HTMLImageElement;
     private realButton : UIButton;
     private fakeButton : UIButton;
+    private nextScreen: boolean;
 
     public constructor(game: Game) {
         super(game);
@@ -83,10 +84,18 @@ class FakeProfileScreen extends GameScreen {
         if(isPressed) {
             if(this.realButton.checkIfPressed(isPressed)) {
                 // console.log("ECHT!"); // werkt
+                this.nextScreen = true;
             }
             if(this.fakeButton.checkIfPressed(isPressed)) {
                 // console.log("NEP!"); // werkt
+                GameTime.removeTime(5);
+                this.nextScreen = true;
             }
         }
+    }
+
+    public adjust(game: Game) {
+        if(this.nextScreen)
+            game.switchScreen(new DeepFakeScreen(game));
     }
 }
