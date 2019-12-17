@@ -11,6 +11,9 @@ class DeepFakeScreen extends GameScreen {
     // private readonly canvas: HTMLCanvasElement;
     // private readonly ctx: CanvasRenderingContext2D;
     public DeepFakeList: Array<Deepfake>
+    public  difference1 = 0;
+    public  difference2 = 0;
+    private nextScreen: boolean;
     
     public draw(ctx: CanvasRenderingContext2D) {
         
@@ -44,23 +47,39 @@ class DeepFakeScreen extends GameScreen {
         // this.game.ctx.fillRect( this.game.canvas.width / 4 * 2.78 , this.deepfakeimage.width / 0.82, 50,50);
         
         
-        this.dialogeCharacter.drawCharacter(ctx, this.game.canvas);
+        
         
     }
 
-
+    public checkdiffenence(){
+        if (this.difference1 === 1 && this.difference2 === 1)
+        {
+            this.nextScreen = true;
+            console.log ("goed")
+        }
+    }
 
 
     public listen(input: UserInput) { 
+        
         const isPressed = input.GetMousePressed();
         if(isPressed){
             if(this.differenceButtom1.checkIfPressed(isPressed)) {
                 console.log("inderdaad1")
+                this.difference1 = 1;
+                
+                this.checkdiffenence()
+
                 
             }
-            if(this.differenceButtom2.checkIfPressed(isPressed)) {
+           else if(this.differenceButtom2.checkIfPressed(isPressed)) {
                 console.log("inderdaad2")
+                this.difference2 = 1;
+               
+                this.checkdiffenence()
+
             }
+            else GameTime.removeTime(5)
         }
         this.dialogeCharacter.nextDialogueHandler(input);
         
@@ -77,6 +96,7 @@ class DeepFakeScreen extends GameScreen {
         imageDeepfake.src = "./assets/images/deepfake.jpg"; // deepfakeImage 
         this.deepfakeimage = imageDeepfake
 
+        
         
 
         //Deze functie zorgt ervoor dat de klikbutton op de goede plaats komt
@@ -111,7 +131,10 @@ class DeepFakeScreen extends GameScreen {
     }
 
 
-
+    public adjust(game: Game) {
+        if(this.nextScreen)
+            game.switchScreen(new ChatScreen(game));
+    }
 
 
 }
