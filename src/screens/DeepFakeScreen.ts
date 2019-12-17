@@ -7,12 +7,13 @@ class DeepFakeScreen extends GameScreen {
     private deepfakeimage: HTMLImageElement;
     private differenceButtom1: UIButton;
     private differenceButtom2: UIButton;
-
+    private dialogeCharacter: DialogeCharacter;
     // private readonly canvas: HTMLCanvasElement;
     // private readonly ctx: CanvasRenderingContext2D;
     public DeepFakeList: Array<Deepfake>
     
     public draw(ctx: CanvasRenderingContext2D) {
+        
         // Draw boxes
         ctx.fillStyle = 'white';
         ctx.fillRect(
@@ -26,7 +27,7 @@ class DeepFakeScreen extends GameScreen {
         ctx.textAlign = "center";
         ctx.font = "30px Arial";
         ctx.fillStyle = 'black';
-        ctx.fillText("Zoek de Verschillen", this.game.canvas.width / 2, 100);
+        ctx.fillText("Zoek de 2 Verschillen", this.game.canvas.width / 2, 100);
         this.game.ctx.drawImage(this.origninal, 
         this.game.canvas.width / 10 * 1, 
         this.game.canvas.height/10 * 2, 
@@ -43,6 +44,8 @@ class DeepFakeScreen extends GameScreen {
         // this.game.ctx.fillRect( this.game.canvas.width / 4 * 2.78 , this.deepfakeimage.width / 0.82, 50,50);
         
         
+        this.dialogeCharacter.drawCharacter(ctx, this.game.canvas);
+        
     }
 
 
@@ -53,12 +56,13 @@ class DeepFakeScreen extends GameScreen {
         if(isPressed){
             if(this.differenceButtom1.checkIfPressed(isPressed)) {
                 console.log("inderdaad1")
+                
             }
             if(this.differenceButtom2.checkIfPressed(isPressed)) {
                 console.log("inderdaad2")
             }
         }
-            
+        this.dialogeCharacter.nextDialogeHandler(input);
         
     }
 
@@ -95,8 +99,14 @@ class DeepFakeScreen extends GameScreen {
         }, 100);
         
         
+        this.dialogeCharacter = new DialogeCharacter();
+        this.dialogeCharacter.createDialoge([
+            'zoek de 2 verschillen', 
+            
+        ]);
         
-
+        
+        
         
     }
 
