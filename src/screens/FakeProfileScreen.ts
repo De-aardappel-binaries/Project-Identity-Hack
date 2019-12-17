@@ -128,6 +128,6 @@ class FakeProfileScreen extends GameScreen {
 
     public adjust(game: Game) {
         if(this.nextScreen)
-            game.switchScreen(new DeepFakeScreen(game));
+            game.switchScreen(new ChatScreen(game));
     }
 }
