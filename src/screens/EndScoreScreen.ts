@@ -2,18 +2,38 @@
 /// <reference path="../GameScreen.ts"/>
 
 class EndScoreScreen extends GameScreen {
-    public player: string;
-    public score: number;
-    public highscores: Array<any>;
-    private scores: Scores;
+    private dialogeCharacter: DialogueCharacter;
 
     constructor(game: Game) {
         super(game);
 
-        this.scores = new Scores();
+        // this.scores = new Scores();
+        this.dialogeCharacter = new DialogueCharacter();
+        this.dialogeCharacter.createDialogue(['Gefeliciteerd! je hebt gewonnen']);
+        
+        GameTime.stopTimer();
     }
 
-    public addScore(player: string, score: number,){
-        
+    public draw(ctx: CanvasRenderingContext2D) {
+        this.dialogeCharacter.drawCharacter(ctx, this.game.canvas);
+
+        // Draw boxes
+        ctx.fillStyle = 'white';
+        ctx.fillRect(this.game.canvas.width / 2 -250, 65, 500, 50);
+
+        // Draw Text
+        ctx.textAlign = "center";
+        ctx.font = "30px Arial";
+        ctx.fillStyle = 'black';
+        ctx.textBaseline = "middle";
+        ctx.fillText('Je score is: ' + GameTime.returnTime(), this.game.canvas.width / 2, 90); 
     }
+
+    public listen(input: UserInput) {
+        this.dialogeCharacter.nextDialogueHandler(input);
+    }
+
+    // public addScore(player: string, score: number,){
+        
+    // }
 }

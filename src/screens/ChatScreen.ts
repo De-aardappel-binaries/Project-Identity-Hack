@@ -5,7 +5,7 @@ class ChatScreen extends GameScreen {
 
     private Chats: Array<Chat> = [
         {
-            chatName: 'Sindy',
+            chatName: 'Cindy',
             chatMessages: [
                 { message: 'Hoi, hoe gaat het met jou?', self: true },
                 { message: 'Hey, goed. Wie is dit?', self: false },
@@ -70,6 +70,8 @@ class ChatScreen extends GameScreen {
             );
         });
 
+        document.getElementById('body').style.backgroundImage = 'url("https://c.pxhere.com/images/94/4c/e8df4e75da76e5d18ec73ce3f1aa-1575607.jpg!d")';
+
         // Create chat buttons
         this.createChatButtons();
 
@@ -99,7 +101,7 @@ class ChatScreen extends GameScreen {
             this.game.canvas.width * 0.6, 
             50
         );
-        ctx.fillStyle = '#f0f0f0';
+        ctx.fillStyle = "rgba(240, 240, 240, 0.8)";
         ctx.fillRect(
             this.game.canvas.width * 0.3,
             50, 
@@ -118,7 +120,7 @@ class ChatScreen extends GameScreen {
                 100
             );
             if (index ===  this.currentChat) {
-                ctx.fillStyle = '#f0f0f0';  
+                ctx.fillStyle = '#f0f0f0';
                 ctx.fillRect(
                     this.game.canvas.width * 0.1,
                     (100 * (index)),
@@ -169,7 +171,7 @@ class ChatScreen extends GameScreen {
                 ctx.fillText(ChatMessage.message, this.game.canvas.width * 0.9 - 385 , (50 * index) + 64);
             } else {
                 // Draw message if other person typed
-                ctx.fillStyle = 'lightgray';
+                ctx.fillStyle = 'white';
                 ctx.fillRect(this.game.canvas.width * 0.3 + 30, (50 * index) + 60, 380, 40);
                 ctx.fillStyle = 'black';
                 ctx.fillText(ChatMessage.message, this.game.canvas.width * 0.3 + 35, (50 * index) + 64);
