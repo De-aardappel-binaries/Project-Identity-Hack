@@ -1,13 +1,13 @@
-class DialogeCharacter {
+class dialogueCharacter {
 
     private xPos: number = -20;
-    private dialoge: Array<string> = [];
-    private dialogeCharacterImage: HTMLImageElement;
+    private dialogue: Array<string> = [];
+    private dialogueCharacterImage: HTMLImageElement;
 
     constructor() {
         let character = new Image();
         character.src = "./assets/images/popupCharacter.png"; // orignele Image
-        this.dialogeCharacterImage = character;
+        this.dialogueCharacterImage = character;
     }
 
     /**
@@ -20,14 +20,14 @@ class DialogeCharacter {
         ctx.fillStyle = 'black';
 
         ctx.drawImage(
-            this.dialogeCharacterImage, 
+            this.dialogueCharacterImage, 
             canvas.width - 400 - this.xPos, 
             canvas.height - 300,
             400,
             300
         );
         ctx.fillText(
-            this.dialoge[0], 
+            this.dialogue[0], 
             canvas.width -380 - this.xPos, 
             canvas.height -260
         ); 
@@ -41,7 +41,7 @@ class DialogeCharacter {
         this.xPos = -400;
 
         const animation: number = setInterval(() => {
-            console.log(this.dialoge);
+            console.log(this.dialogue);
 
             if(this.xPos >= 0)
                 clearInterval(animation);
@@ -58,7 +58,7 @@ class DialogeCharacter {
         this.xPos = 0;
 
         const animation: number = setInterval(() => {
-            console.log(this.dialoge);
+            console.log(this.dialogue);
 
             if(this.xPos <= -400)
                 clearInterval(animation);
@@ -72,27 +72,27 @@ class DialogeCharacter {
      * this functions adds dialoge to the character
      * @param dialoge array of separete messages
      */
-    public createDialoge(dialoge: Array<string>) {
-        if(this.dialoge.length == 0) {
-            this.dialoge = dialoge;
+    public createDialogue(dialoge: Array<string>) {
+        if(this.dialogue.length == 0) {
+            this.dialogue = dialoge;
             this.showCharacter();
         }
 
-        this.dialoge.concat(dialoge);
+        this.dialogue.concat(dialoge);
     }
 
     /**
      * Go's to next dialoge
      */
-    public nextDialogeHandler(input: UserInput) {
+    public nextDialogueHandler(input: UserInput) {
         const isPressed = input.GetMousePressed();
 
         if(isPressed) {
-            if(this.dialoge.length == 1)
+            if(this.dialogue.length == 1)
                 this.hideCharacter();
             
-            if(this.dialoge.length >= 1)
-                this.dialoge.shift();
+            if(this.dialogue.length >= 1)
+                this.dialogue.shift();
         }
     }
 
