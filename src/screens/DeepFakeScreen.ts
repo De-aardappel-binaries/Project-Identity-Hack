@@ -7,7 +7,7 @@ class DeepFakeScreen extends GameScreen {
     private deepfakeimage: HTMLImageElement;
     private differenceButtom1: UIButton;
     private differenceButtom2: UIButton;
-    private dialogeCharacter: DialogeCharacter;
+    
     // private readonly canvas: HTMLCanvasElement;
     // private readonly ctx: CanvasRenderingContext2D;
     public DeepFakeList: Array<Deepfake>
@@ -44,7 +44,7 @@ class DeepFakeScreen extends GameScreen {
         // this.game.ctx.fillRect( this.game.canvas.width / 4 * 2.78 , this.deepfakeimage.width / 0.82, 50,50);
         
         
-        this.dialogeCharacter.drawCharacter(ctx, this.game.canvas);
+        
         
     }
 
@@ -62,7 +62,7 @@ class DeepFakeScreen extends GameScreen {
                 console.log("inderdaad2")
             }
         }
-        this.dialogeCharacter.nextDialogeHandler(input);
+       
         
     }
 
@@ -99,12 +99,7 @@ class DeepFakeScreen extends GameScreen {
         }, 100);
         
         
-        this.dialogeCharacter = new DialogeCharacter();
-        this.dialogeCharacter.createDialoge([
-            'zoek de 2 verschillen', 
-            
-        ]);
-        
+       
         
         
         
