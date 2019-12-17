@@ -10,7 +10,7 @@ class ChatScreen extends GameScreen {
                 { message: 'Hoi hoe gaat het met jou', self: true },
                 { message: 'Ja, goed wie is dit?', self: false },
                 { message: 'Ik ben jan peter balkende en wij ben jij?', self: true },
-                { message: 'Sindy, waar wat moet je met mijn nummer?', self: false }
+                { message: 'Sindy, waar wat moet je met mijn nummer?', self: false, groomerDetail: 1 }
             ]
         },
         {
@@ -37,18 +37,20 @@ class ChatScreen extends GameScreen {
                 { message: 'He, Dikke', self: true },
                 { message: 'Vannavond bij mij chille?', self: true },
                 { message: 'Ja is goed, kan je je adres nog eens door sturen?', self: false },
-                { message: 'Afslag staat 69', self: true, groomerDetail: true },
+                { message: 'Afslag staat 69', self: true, groomerDetail: 1 },
                 { message: 'Oké tot vannavond.', self: false }
             ]
         }
     ];
     private currentChat: number = 0;
-    private hints: number;
+    private hints: number = 0;
 
     private dialogueCharacter: DialogueCharacter;
 
     private selectChatBtns: UIButton[] = [];
     private chatBtns: UIButton[] = [];
+
+    private nextScreen: boolean;
     
     constructor(game: Game) {
         super(game);
@@ -70,7 +72,15 @@ class ChatScreen extends GameScreen {
         // Create chat buttons
         this.createChatButtons();
 
+        // count all hidden hints
+        this.Chats.forEach((Chat: Chat) => {
+            Chat.chatMessages.forEach((msg: ChatMessage) => {
+                if (msg.groomerDetail)
+                    this.hints++;
+            });
+        });
 
+        this.dialogueCharacter.createDialogue(['Je hebt de chat app gevonden', 'je gaat nu zoeken naar info die kan helpen', 'klik op de berichten die belangrijk bewijs zijn', 'Veel geluk!']);
     }
     
     public draw(ctx: CanvasRenderingContext2D) {
@@ -124,6 +134,20 @@ class ChatScreen extends GameScreen {
             ctx.fillText(User.chatMessages[0].message, this.game.canvas.width * 0.1 + 10, (100 * (index + 1) - 30));
         })
 
+        // Draw hints
+        ctx.fillStyle = "black";
+        ctx.strokeRect(
+            this.game.canvas.width * 0.1,
+            this.game.canvas.height - 50,
+            this.game.canvas.width * 0.2, 
+            50
+        );
+        ctx.fillText(
+            `Hints over: ${this.hints}`,
+            this.game.canvas.width * 0.1 + 15,
+            this.game.canvas.height - 15
+        )
+
         // Draw Current chat
         // Title
         ctx.fillStyle = "black";
@@ -165,14 +189,31 @@ class ChatScreen extends GameScreen {
                     this.createChatButtons();
                 }
             });
+
             this.chatBtns.forEach((Btn, index) => {
                 if(Btn.checkIfPressed(isPressed))
                     if(this.Chats[this.currentChat].chatMessages[index]) {
-                        if(this.Chats[this.currentChat].chatMessages[index].groomerDetail) {
+
+                        if(this.Chats[this.currentChat].chatMessages[index].groomerDetail === 1) {
+
                             this.dialogueCharacter.createDialogue(['Je hebt goed detail gevonden']);
+                            this.Chats[this.currentChat].chatMessages[index].groomerDetail = 2;
+                            this.hints--;
+
+                        } else if(this.Chats[this.currentChat].chatMessages[index].groomerDetail === 2) {
+
+                            this.dialogueCharacter.createDialogue(['Je hebt hier al op gedrukt']);
+
                         } else {
+
                             this.dialogueCharacter.createDialogue(['Dit is geen waardevolle info, foei', 'Dit gaat van je tijd af']);
+                            this.Chats[this.currentChat].chatMessages[index].groomerDetail = 2;
                             GameTime.removeTime(50);
+
+                        }
+
+                        if(this.hints === 0) {
+                            this.nextScreen = true;
                         }
                     }
             });
@@ -193,6 +234,11 @@ class ChatScreen extends GameScreen {
         });
     }
 
+    public adjust(game: Game) {
+        if(this.nextScreen)
+            game.switchScreen(new EndScoreScreen(game));
+    }
+
 }
 
 interface Chat {
@@ -203,5 +249,5 @@ interface Chat {
 interface ChatMessage {
     message: string,
     self: boolean,
-    groomerDetail?: boolean
+    groomerDetail?: number
 }
