@@ -10,6 +10,7 @@ class HackGroomerScreen extends GameScreen{
 
 
     private abc = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+    private possibleAnswers = ['IntelSucks', 'NvidiaGay', 'VIAforTheWin', 'fuckAMD'];
     private startPoint: Pos;
 
     constructor(game: Game) {
