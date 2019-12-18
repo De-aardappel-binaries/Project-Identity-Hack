@@ -11,8 +11,9 @@ class LostScreen extends GameScreen {
         this.dialogeCharacter = new DialogueCharacter();
         this.dialogeCharacter.createDialogue([
             'He! jammer joh.', 
-            'je bent ontslagen.', 
-            'dan moet je maar doorwerken.'
+            'Je hebt de dader niet te pakken.',
+            'Nu ben je ontslagen.',
+            'Dan moet je maar doorwerken.'
         ]);
     }
 

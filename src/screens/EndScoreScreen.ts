@@ -9,7 +9,10 @@ class EndScoreScreen extends GameScreen {
 
         // this.scores = new Scores();
         this.dialogeCharacter = new DialogueCharacter();
-        this.dialogeCharacter.createDialogue(['Gefeliciteerd! je hebt gewonnen']);
+        this.dialogeCharacter.createDialogue([
+            'Gefeliciteerd! je hebt gewonnen.',
+            'De dader is opgepakt. Dit is je score.'
+        ]);
         
         GameTime.stopTimer();
     }
