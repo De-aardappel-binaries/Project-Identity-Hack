@@ -7,6 +7,8 @@ class EndScoreScreen extends GameScreen {
     constructor(game: Game) {
         super(game);
 
+        document.getElementById('body').style.backgroundImage = "url('https://indebuurt.nl/ede/wp-content/uploads/2019/10/arrestatie-foto-anp.jpg')";
+
         // this.scores = new Scores();
         this.dialogeCharacter = new DialogueCharacter();
         this.dialogeCharacter.createDialogue([
