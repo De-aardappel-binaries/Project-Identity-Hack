@@ -24,4 +24,13 @@ class UIButton {
 
     }
 
+    /**
+     * For debug purposes draw button aria
+     * @param ctx CanvasRenderingContext2D Object
+     */
+    public drawDebugButton(ctx: CanvasRenderingContext2D) {
+        ctx.fillStyle = "rgba(255,0,0,0.5)";
+        ctx.fillRect(this.xStart, this.yStart, this.width, this.height);
+    }
+
 }

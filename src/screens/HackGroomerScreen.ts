@@ -10,7 +10,7 @@ class HackGroomerScreen extends GameScreen{
     private dialogueCharacter = new DialogueCharacter();
 
     private abc: Array<string> = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-    private password = ['groomer', 'deepfake', 'hacking', 'wifi'];
+    private password = ['groomer', 'deepfake', 'hacking', 'wifi']; // TODO write more passwords
     private charactersFound: Array<string> = [];
     private currentPassword: string;
     private startPoint: Pos;
@@ -104,6 +104,10 @@ class HackGroomerScreen extends GameScreen{
         this.dialogueCharacter.drawCharacter(ctx, this.game.canvas);
     }
 
+    /**
+     * this function returns the password with all characters that have not
+     * been discovered yet replaced by '*'
+     */
     private getPassword(): string {
         let dissectPassword =  this.currentPassword.split("");
         
@@ -119,6 +123,10 @@ class HackGroomerScreen extends GameScreen{
         return dissectPassword.join('');
     }
 
+
+    /**
+     * this function randomized the alphabet string for the draw funtion
+     */
     private randomizeString(){
         for (let i = 0; i < 50; i++) {
             let firstRandomizer = Math.round((this.abc.length -1) * Math.random());

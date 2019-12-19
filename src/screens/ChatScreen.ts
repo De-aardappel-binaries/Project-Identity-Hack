@@ -229,6 +229,9 @@ class ChatScreen extends GameScreen {
         }
     }
 
+    /**
+     * this function generates all buttons for the loaded chat window
+     */
     private createChatButtons() {
         this.chatBtns = [];
         
@@ -248,15 +251,4 @@ class ChatScreen extends GameScreen {
             game.switchScreen(new EndScoreScreen(game));
     }
 
-}
-
-interface Chat {
-    chatName: string,
-    chatMessages: ChatMessage[]
-}
-
-interface ChatMessage {
-    message: string,
-    self: boolean,
-    groomerDetail?: number
 }
