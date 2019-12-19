@@ -2,7 +2,37 @@
 /// <reference path="../GameScreen.ts"/>
 
 class FakeProfileScreen extends GameScreen {
-    private profileImages: Array<string>;
+    private profiles: Array<Profiles> = [
+        {
+            profileImage: "./assets/images/profile-pics/boy1.png",
+            fake: true,
+            textLine1: "Ik ben een vrolijke, 15-jarige jongen",
+            textLine2: "op zoek naar nieuwe vrienden."
+        },
+        {
+            profileImage: "./assets/images/profile-pics/girl1.png",
+            fake: true,
+            textLine1: "Hoi! Mijn naam is Emily, 14 jaar, en ik wil graag",
+            textLine2: "kennis maken met andere meiden van mijn leeftijd."
+        },
+        {
+            profileImage: "./assets/images/profile-pics/FPBlankProfilePic.png",
+            fake: false,
+            textLine1: "Ik ben een 42 jarige man. Mijn interesses zijn auto's,",
+            textLine2: "computers en voetbal."
+        },
+        {
+            profileImage: "./assets/images/profile-pics/boy2.png",
+            fake: true,
+            textLine1: "Ik ben Jake, 17 jaar, en ik hou van volleybal.",
+        },
+        {
+            profileImage: "./assets/images/profile-pics/girl2.png",
+            fake: true,
+            textLine1: "Mijn naam is Jard, ik hou van paarden.",
+            textLine2: "Ik zoek andere meiden om mee te kletsen. ;)"
+        }
+    ];
     private topNavImage: HTMLImageElement;
     private logoImage: HTMLImageElement;
     private searchBarImage: HTMLImageElement;
@@ -17,13 +47,15 @@ class FakeProfileScreen extends GameScreen {
     private nextLevelButton : UIButton;
     private nextScreen: boolean;
     private showNextLevelButton : boolean;
-    private dialogueCharacter: DialogueCharacter;
+    private dialogueCharacter : DialogueCharacter;
+    private currentProfile : number = -1;
 
     public constructor(game: Game) {
         super(game);
 
         document.getElementById('body').style.backgroundImage = "";
         document.getElementById('body').style.backgroundColor = "#e4e4e4";
+        this.setNewProfile();
 
         let topNavImg = new Image();
         topNavImg.src = "./assets/images/FPTopNav.png";
@@ -36,10 +68,6 @@ class FakeProfileScreen extends GameScreen {
         let searchBarImg = new Image();
         searchBarImg.src = "./assets/images/FPSearchBar.png";
         this.searchBarImage = searchBarImg;
-
-        let profilePicImg = new Image();
-        profilePicImg.src = "./assets/images/FPBlankProfilePic.png";
-        this.profilePicImage = profilePicImg;
 
         let profilePicLineImg = new Image();
         profilePicLineImg.src = "./assets/images/FPProfilePicLine.png";
@@ -72,7 +100,9 @@ class FakeProfileScreen extends GameScreen {
         this.dialogueCharacter = new DialogueCharacter();
 
         this.dialogueCharacter.createDialogue([
-            "Zoek uit of dit profiel echt of nep is."
+            "Je hebt de social media profielen van...",
+            "de dader gevonden. Zoek uit of ze echt of...",
+            "nep zijn. Veel succes."
         ]);
     }
 
@@ -84,8 +114,10 @@ class FakeProfileScreen extends GameScreen {
         ctx.drawImage(this.profilePicImage, this.game.canvas.width / 2 - 48, this.game.canvas.height / 2 - 248, 96, 96);
         ctx.drawImage(this.profilePicLineImage, this.game.canvas.width / 2 - 50, this.game.canvas.height / 2 - 250, 100, 100);
         ctx.drawImage(this.profileTextImage, this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
-        ctx.drawImage(this.realButtonImage, this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200);
-        ctx.drawImage(this.fakeButtonImage, this.game.canvas.width / 2, this.game.canvas.height / 2 + 200);
+        if(!this.showNextLevelButton) {
+            ctx.drawImage(this.realButtonImage, this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200);
+            ctx.drawImage(this.fakeButtonImage, this.game.canvas.width / 2, this.game.canvas.height / 2 + 200);
+        }
         if(this.showNextLevelButton) {
             ctx.drawImage(this.nextLevelButtonImage, 20, 100);
         }
@@ -94,9 +126,12 @@ class FakeProfileScreen extends GameScreen {
         ctx.textAlign = "center";
         ctx.font = "20px Arial";
         ctx.fillStyle = 'black';
-        ctx.fillText("Ik ben een vrolijke, 15-jarige jongen", this.game.canvas.width / 2, this.game.canvas.height / 2);
-        ctx.fillText("op zoek naar nieuwe vrienden.", this.game.canvas.width / 2, this.game.canvas.height / 2 + 30);
+        ctx.fillText(this.profiles[this.currentProfile].textLine1, this.game.canvas.width / 2, this.game.canvas.height / 2);
+        if (this.profiles[this.currentProfile].textLine2 !== undefined) {
+            ctx.fillText(this.profiles[this.currentProfile].textLine2, this.game.canvas.width / 2, this.game.canvas.height / 2 + 30);
+        }
 
+        // draw dialogue character
         this.dialogueCharacter.drawCharacter(ctx, this.game.canvas);
     }
     
@@ -105,21 +140,34 @@ class FakeProfileScreen extends GameScreen {
         this.dialogueCharacter.nextDialogueHandler(isPressed);
 
         if(isPressed) {
-            if(this.fakeButton.checkIfPressed(isPressed)) {
-                // console.log("ECHT!"); // werkt
-                this.dialogueCharacter.createDialogue([
-                    "Dat antwoord was correct!",
-                    "Snel door naar het volgende level!"
-                ]);
-                this.showNextLevelButton = true;
+
+            if(!this.showNextLevelButton && this.fakeButton.checkIfPressed(isPressed)) {
+                if(this.profiles[this.currentProfile].fake) {
+                    this.dialogueCharacter.createDialogue([
+                    "Dat antwoord was correct!"
+                    ]);
+                    this.setNewProfile();
+                } else {
+                    this.dialogueCharacter.createDialogue([
+                        "Dat antwoord was helaas fout. -10 seconden!",
+                        "Probeer het opnieuw!"
+                    ]);
+                    GameTime.removeTime(10);
+                }
             }
-            if(this.realButton.checkIfPressed(isPressed)) {
-                // console.log("NEP!"); // werkt
-                this.dialogueCharacter.createDialogue([
-                    "Dat antwoord was helaas fout. -10 seconden!",
-                    "Probeer het opnieuw!"
-                ]);
-                GameTime.removeTime(10);
+            if(!this.showNextLevelButton && this.realButton.checkIfPressed(isPressed)) {
+                if(!this.profiles[this.currentProfile].fake) {
+                    this.dialogueCharacter.createDialogue([
+                    "Dat antwoord was correct!"
+                    ]);
+                    this.setNewProfile();
+                } else {
+                    this.dialogueCharacter.createDialogue([
+                        "Dat antwoord was helaas fout. -10 seconden!",
+                        "Probeer het opnieuw!"
+                    ]);
+                    GameTime.removeTime(10);
+                }
             }
             if(this.nextLevelButton.checkIfPressed(isPressed)) {
                 if(this.showNextLevelButton) {
@@ -129,8 +177,21 @@ class FakeProfileScreen extends GameScreen {
         }
     }
 
+    private setNewProfile() {
+        if (!(this.currentProfile < this.profiles.length -1)) {
+            this.showNextLevelButton = true;
+            return;
+        } else {
+            this.currentProfile++;
+        }
+
+        let profilePicImg = new Image();
+        profilePicImg.src = this.profiles[this.currentProfile].profileImage;
+        this.profilePicImage = profilePicImg;
+    }
+
     public adjust(game: Game) {
         if(this.nextScreen)
-            game.switchScreen(new ChatScreen(game));
+            game.switchScreen(new DeepFakeScreen(game));
     }
 }
