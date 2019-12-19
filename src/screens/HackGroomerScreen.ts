@@ -6,9 +6,11 @@ class HackGroomerScreen extends GameScreen{
     private readonly grid: number = 10;
     private readonly buttonSize: number = 50;
     private gridButton: Array<Array<UIButton>> = [];
+    private answerForm: UIButton;
 
 
     private abc = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+    private possibleAnswers = ['IntelSucks', 'NvidiaGay', 'VIAforTheWin', 'fuckAMD'];
     private startPoint: Pos;
 
     constructor(game: Game) {
@@ -25,7 +27,7 @@ class HackGroomerScreen extends GameScreen{
             this.gridButton[y] = [];
             for(let x = 0; x < this.grid; x++) {
                 this.gridButton[y][x] = new UIButton(
-                    this.startPoint.xPos + (x * this.buttonSize), 
+                    this.startPoint.xPos + (x * this.buttonSize),
                     this.startPoint.yPos + (y * this.buttonSize),
                     this.buttonSize,
                     this.buttonSize
@@ -34,7 +36,16 @@ class HackGroomerScreen extends GameScreen{
         }
     }
 
+    private drawForm(ctx: CanvasRenderingContext2D){
+        ctx.fillStyle = 'white';
+        ctx.fillRect(this.game.canvas.width / 2 - 250, 65, 500, 50);
+        ctx.strokeRect(this.game.canvas.width / 2 - 250, 65, 500, 50);
+    }
+
     public draw(ctx: CanvasRenderingContext2D) {
+        this.drawForm(ctx);
+        const answerForm = document.createElement("form");
+        const element1 = document.createElement("input");
         let count = 0;
 
         for(let y = 0; y < this.grid; y++) {
