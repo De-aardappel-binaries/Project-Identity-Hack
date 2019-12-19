@@ -2,8 +2,7 @@
 /// <reference path="../GameScreen.ts"/>
 
 class FakeProfileScreen extends GameScreen {
-    public currentProfile: any;
-    public profileImageUrls: Array<string>;
+    private profileImages: Array<string>;
     private topNavImage: HTMLImageElement;
     private logoImage: HTMLImageElement;
     private searchBarImage: HTMLImageElement;
