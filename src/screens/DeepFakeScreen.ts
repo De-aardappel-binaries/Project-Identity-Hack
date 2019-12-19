@@ -5,15 +5,72 @@ class DeepFakeScreen extends GameScreen {
 
     private origninal: HTMLImageElement;
     private deepfakeimage: HTMLImageElement;
+
     private differenceButtom1: UIButton;
     private differenceButtom2: UIButton;
-    private dialogeCharacter: DialogueCharacter;
-    // private readonly canvas: HTMLCanvasElement;
-    // private readonly ctx: CanvasRenderingContext2D;
+    private dialogueCharacter: DialogueCharacter;
+    
     public DeepFakeList: Array<Deepfake>
     public  difference1 = 0;
     public  difference2 = 0;
     private nextScreen: boolean;
+
+
+    private DxOriginal: number;
+    private DxDeepfake: number;
+    private Dy: number;
+    private Dw: number;
+    private Dh: number;
+    private paddingTop: number = this.game.canvas.height*0.10;
+    private paddingBottom: number = this.game.canvas.height*0.05;
+
+    constructor(game: Game) {
+        super(game);
+
+        // Import Images
+        let imageoriginal = new Image();
+        imageoriginal.src = "./assets/images/original.jpg"; // orignele Image
+        this.origninal = imageoriginal;
+
+        let imageDeepfake = new Image();
+        imageDeepfake.src = "./assets/images/deepfake.jpg"; // deepfakeImage 
+        this.deepfakeimage = imageDeepfake
+
+        // Set background
+        document.getElementById('body').style.backgroundImage = "url('https://live.staticflickr.com/684/32192716655_b94c77c8c3_b.jpg')";
+        
+        // Set buttons
+        this.Dy =  this.paddingTop;
+        this.Dw =  this.game.canvas.width/10*3.5;
+        this.Dh =  this.game.canvas.height * this.game.canvas.width / this.game.canvas.height/2;
+        this.DxOriginal =  this.game.canvas.width / 10 * 1;
+        this.DxDeepfake =  this.game.canvas.width / 2 + this.game.canvas.width/10 * 0.5; 
+
+        if (this.game.canvas.height - this.Dh -this.paddingTop-this.paddingBottom < 1)
+            this.Dh = this.game.canvas.height - this.paddingBottom - this.paddingTop;
+
+        //Deze functie zorgt ervoor dat de klikbutton op de goede plaats komt
+        this.differenceButtom1 = new UIButton(
+            this.DxDeepfake + (this.Dw * 0.434), 
+            this.Dy + (this.Dh * 0.27),
+            this.Dw * 0.1,
+            this.Dh * 0.07
+        );
+
+        this.differenceButtom2 = new UIButton(
+            this.DxDeepfake + (this.Dw * 0.44), 
+            this.Dy + (this.Dh * 0.88),
+            this.Dw * 0.1,
+            this.Dh * 0.07
+        );
+        
+        
+        // Creates Dialogue
+        this.dialogueCharacter = new DialogueCharacter();
+        this.dialogueCharacter.createDialogue([
+            'zoek de 2 verschillen'
+        ]);
+    }
     
     public draw(ctx: CanvasRenderingContext2D) {
         
@@ -31,24 +88,30 @@ class DeepFakeScreen extends GameScreen {
         ctx.font = "30px Arial";
         ctx.fillStyle = 'black';
         ctx.fillText("Zoek de 2 Verschillen", this.game.canvas.width / 2, 100);
-        this.game.ctx.drawImage(this.origninal, 
-        this.game.canvas.width / 10 * 1, 
-        this.game.canvas.height/10 * 2, 
-        this.game.canvas.width/10*3.5, 
-        this.game.canvas.height * this.game.canvas.width / this.game.canvas.height/2)
+        
+        //originele foto
+        this.game.ctx.drawImage(
+        this.origninal, 
+        this.DxOriginal,
+        this.Dy, 
+        this.Dw,
+        this.Dh)
 
-        this.game.ctx.drawImage(this.deepfakeimage, 
-        this.game.canvas.width / 2 + this.game.canvas.width/10 * 0.5, 
-        this.game.canvas.height/10*2, 
-        this.game.canvas.width/10*3.5,
-        this.game.canvas.height * this.game.canvas.width / this.game.canvas.height/2 )
+        //deepfake foto
+        this.game.ctx.drawImage(
+        this.deepfakeimage, 
+        this.DxDeepfake, 
+        this.Dy, 
+        this.Dw,
+        this.Dh)
 
         // this.game.ctx.fillStyle = "white"
-        // this.game.ctx.fillRect( this.game.canvas.width / 4 * 2.78 , this.deepfakeimage.width / 0.82, 50,50);
-        
-        
-        
-        
+        // this.game.ctx.fillRect(
+        //     this.DxDeepfake + (this.Dw * 0.44), 
+        //     this.Dy + (this.Dh * 0.88),
+        //     this.Dw * 0.1,
+        //     this.Dh * 0.07
+        // );
     }
 
     public checkdiffenence(){
@@ -81,58 +144,15 @@ class DeepFakeScreen extends GameScreen {
             }
             else GameTime.removeTime(5)
         }
-        this.dialogeCharacter.nextDialogueHandler(input);
+        this.dialogueCharacter.nextDialogueHandler(input);
         
     }
 
-    constructor(game: Game) {
-        super(game);
-
-        let imageoriginal = new Image();
-        imageoriginal.src = "./assets/images/original.jpg"; // orignele Image
-        this.origninal = imageoriginal;
-
-        let imageDeepfake = new Image();
-        imageDeepfake.src = "./assets/images/deepfake.jpg"; // deepfakeImage 
-        this.deepfakeimage = imageDeepfake
-
-        document.getElementById('body').style.backgroundImage = "url('https://live.staticflickr.com/684/32192716655_b94c77c8c3_b.jpg')";        
-
-        //Deze functie zorgt ervoor dat de klikbutton op de goede plaats komt
-        let imageLoadWaiter1 = setInterval(() => {
-            if (this.deepfakeimage.width !== 0){
-                this.differenceButtom1 = new UIButton(this.game.canvas.width / 4 * 2.78 , this.deepfakeimage.width / 1.7, 50,50);
-                
-                
-                clearInterval(imageLoadWaiter1)
-            }
-        }, 100);
-        
-        let imageLoadWaiter2 = setInterval(() => {
-            if (this.deepfakeimage.width !== 0){
-                this.differenceButtom2 = new UIButton(this.game.canvas.width / 4 * 2.78 , this.deepfakeimage.width / 0.82, 50,50);
-                
-                
-                clearInterval(imageLoadWaiter2)
-            }
-        }, 100);
-        
-        
-        this.dialogeCharacter = new DialogueCharacter();
-        this.dialogeCharacter.createDialogue([
-            'zoek de 2 verschillen', 
-            
-        ]);
-        
-        
-        
-        
-    }
 
 
     public adjust(game: Game) {
         if(this.nextScreen)
-            game.switchScreen(new ChatScreen(game));
+            game.switchScreen(new FakeProfileScreen(game));
     }
 
 
