@@ -10,11 +10,30 @@ class DeepFakeScreen extends GameScreen {
     private differenceButtom2: UIButton;
     private dialogueCharacter: DialogueCharacter;
     
-    public DeepFakeList: Array<Deepfake>
+    public deepFakeList: Array<Deepfake> = [
+        {
+            differenceButton1:{
+                    height: 0.07,
+                    width: 0.1,
+                    x: 0.434,
+                    y: 0.27,
+            },
+            differenceButton2:{
+                height: 0.07,
+                width: 0.1,
+                x: 0.44,
+                y: 0.88,
+            },
+            imageUrlFake: "./assets/images/deepfake.jpg",
+            imageUrlOriginal: "./assets/images/original.jpg"
+        }
+        
+    ]
+    private currentDeepFake: number = -1;
     public  difference1 = 0;
     public  difference2 = 0;
     private nextScreen: boolean;
-
+    
 
     private DxOriginal: number;
     private DxDeepfake: number;
@@ -27,18 +46,45 @@ class DeepFakeScreen extends GameScreen {
     constructor(game: Game) {
         super(game);
 
-        // Import Images
-        let imageoriginal = new Image();
-        imageoriginal.src = "./assets/images/original.jpg"; // orignele Image
-        this.origninal = imageoriginal;
-
-        let imageDeepfake = new Image();
-        imageDeepfake.src = "./assets/images/deepfake.jpg"; // deepfakeImage 
-        this.deepfakeimage = imageDeepfake
+        this.setNewDeepFake()
 
         // Set background
         document.getElementById('body').style.backgroundImage = "url('https://live.staticflickr.com/684/32192716655_b94c77c8c3_b.jpg')";
         
+
+        
+        
+        // Creates Dialogue
+        this.dialogueCharacter = new DialogueCharacter();
+        this.dialogueCharacter.createDialogue([
+            'zoek de 2 verschillen'
+        ]);
+    }
+    
+
+
+    private setNewDeepFake(){            
+        this.currentDeepFake++;
+        if (this.currentDeepFake < this.deepFakeList.length ){
+            this.difference1 = 0;
+            this.difference2 = 0;
+        }
+        else { 
+            this.nextScreen = true;
+            return;
+        } 
+
+       
+
+        // Import Images
+        let imageoriginal = new Image();
+        imageoriginal.src = this.deepFakeList[this.currentDeepFake].imageUrlOriginal; // orignele Image
+        this.origninal = imageoriginal;
+
+        let imageDeepfake = new Image();
+        imageDeepfake.src = this.deepFakeList[this.currentDeepFake].imageUrlFake; // deepfakeImage 
+        this.deepfakeimage = imageDeepfake;
+
         // Set buttons
         this.Dy =  this.paddingTop;
         this.Dw =  this.game.canvas.width/10*3.5;
@@ -51,27 +97,22 @@ class DeepFakeScreen extends GameScreen {
 
         //Deze functie zorgt ervoor dat de klikbutton op de goede plaats komt
         this.differenceButtom1 = new UIButton(
-            this.DxDeepfake + (this.Dw * 0.434), 
-            this.Dy + (this.Dh * 0.27),
-            this.Dw * 0.1,
-            this.Dh * 0.07
+            this.DxDeepfake + (this.Dw * this.deepFakeList[this.currentDeepFake].differenceButton1.x), 
+            this.Dy + (this.Dh * this.deepFakeList[this.currentDeepFake].differenceButton1.y),
+            this.Dw * this.deepFakeList[this.currentDeepFake].differenceButton1.width,
+            this.Dh * this.deepFakeList[this.currentDeepFake].differenceButton1.height
         );
 
         this.differenceButtom2 = new UIButton(
-            this.DxDeepfake + (this.Dw * 0.44), 
-            this.Dy + (this.Dh * 0.88),
-            this.Dw * 0.1,
-            this.Dh * 0.07
+            this.DxDeepfake + (this.Dw * this.deepFakeList[this.currentDeepFake].differenceButton2.x), 
+            this.Dy + (this.Dh * this.deepFakeList[this.currentDeepFake].differenceButton2.y),
+            this.Dw * this.deepFakeList[this.currentDeepFake].differenceButton2.width,
+            this.Dh * this.deepFakeList[this.currentDeepFake].differenceButton2.height
         );
+
         
-        
-        // Creates Dialogue
-        this.dialogueCharacter = new DialogueCharacter();
-        this.dialogueCharacter.createDialogue([
-            'zoek de 2 verschillen'
-        ]);
     }
-    
+
     public draw(ctx: CanvasRenderingContext2D) {
         
         // Draw boxes
@@ -117,7 +158,8 @@ class DeepFakeScreen extends GameScreen {
     public checkdiffenence(){
         if (this.difference1 === 1 && this.difference2 === 1)
         {
-            this.nextScreen = true;
+            this.setNewDeepFake()
+
             console.log ("goed")
         }
     }
