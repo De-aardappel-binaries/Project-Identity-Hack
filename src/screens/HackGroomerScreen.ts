@@ -158,4 +158,10 @@ class HackGroomerScreen extends GameScreen{
             }
         }
     }
+
+    public adjust(game: Game) {
+        if(this.getPassword() == this.currentPassword) {
+            game.switchScreen(new FakeProfileScreen(game));
+        }
+    }
 }
