@@ -1,4 +1,6 @@
-interface Profile {
-    profileImage: HTMLImageElement,
-    fake: boolean
+interface Profiles {
+    profileImage : string;
+    fake : boolean;
+    textLine1 : string;
+    textLine2? : string;
 }

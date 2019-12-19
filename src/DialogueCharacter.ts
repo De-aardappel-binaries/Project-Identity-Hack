@@ -26,11 +26,14 @@ class DialogueCharacter {
             400,
             300
         );
-        ctx.fillText(
-            this.dialogue[0], 
-            canvas.width -380 - this.xPos, 
-            canvas.height -260
-        ); 
+        
+        if(this.dialogue[0] !== undefined) {
+            ctx.fillText(
+                this.dialogue[0], 
+                canvas.width -380 - this.xPos, 
+                canvas.height -260
+            );
+        }
 
     }
 
