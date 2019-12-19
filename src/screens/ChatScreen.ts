@@ -152,7 +152,7 @@ class ChatScreen extends GameScreen {
             50
         );
         ctx.fillText(
-            `Hints over: ${this.hints}`,
+            `Bewijsstukken over: ${this.hints}`,
             this.game.canvas.width * 0.1 + 15,
             this.game.canvas.height - 15
         )
