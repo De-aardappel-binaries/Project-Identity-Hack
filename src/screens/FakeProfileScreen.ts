@@ -17,7 +17,7 @@ class FakeProfileScreen extends GameScreen {
     private nextLevelButton : UIButton;
     private nextScreen: boolean;
     private showNextLevelButton : boolean;
-    private dialogeCharacter: DialogueCharacter;
+    private dialogueCharacter: DialogueCharacter;
 
     public constructor(game: Game) {
         super(game);
@@ -69,10 +69,12 @@ class FakeProfileScreen extends GameScreen {
         
         this.showNextLevelButton = false;
 
-        this.dialogeCharacter = new DialogueCharacter();
+        this.dialogueCharacter = new DialogueCharacter();
 
-        this.dialogeCharacter.createDialogue([
-            "Zoek uit of dit profiel echt of nep is."
+        this.dialogueCharacter.createDialogue([
+            "Je hebt de social media profielen van...",
+            "de dader gevonden. Zoek uit of ze echt of...",
+            "nep zijn. Veel succes."
         ]);
     }
 
@@ -97,17 +99,18 @@ class FakeProfileScreen extends GameScreen {
         ctx.fillText("Ik ben een vrolijke, 15-jarige jongen", this.game.canvas.width / 2, this.game.canvas.height / 2);
         ctx.fillText("op zoek naar nieuwe vrienden.", this.game.canvas.width / 2, this.game.canvas.height / 2 + 30);
 
-        this.dialogeCharacter.drawCharacter(ctx, this.game.canvas);
+        // draw dialogue character
+        this.dialogueCharacter.drawCharacter(ctx, this.game.canvas);
     }
     
     public listen(input: UserInput){
         const isPressed = input.GetMousePressed();
-        this.dialogeCharacter.nextDialogueHandler(isPressed);
+        this.dialogueCharacter.nextDialogueHandler(isPressed);
 
         if(isPressed) {
             if(this.fakeButton.checkIfPressed(isPressed)) {
                 // console.log("ECHT!"); // werkt
-                this.dialogeCharacter.createDialogue([
+                this.dialogueCharacter.createDialogue([
                     "Dat antwoord was correct!",
                     "Snel door naar het volgende level!"
                 ]);
@@ -115,7 +118,7 @@ class FakeProfileScreen extends GameScreen {
             }
             if(this.realButton.checkIfPressed(isPressed)) {
                 // console.log("NEP!"); // werkt
-                this.dialogeCharacter.createDialogue([
+                this.dialogueCharacter.createDialogue([
                     "Dat antwoord was helaas fout. -10 seconden!",
                     "Probeer het opnieuw!"
                 ]);
