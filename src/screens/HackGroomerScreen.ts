@@ -14,7 +14,7 @@ class HackGroomerScreen extends GameScreen{
     constructor(game: Game) {
         super(game);
 
-        this.startPoint = {
+        this.startPoint = { 
             xPos: (game.canvas.width - (this.buttonSize * this.grid)) / 2, 
             yPos: 200
         }
@@ -35,8 +35,18 @@ class HackGroomerScreen extends GameScreen{
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
+        // Draw Password crack bar
+        ctx.fillStyle = 'white';
+        ctx.strokeStyle = 'black';
+        ctx.fillRect(
+            this.startPoint.xPos,
+            this.startPoint.yPos - 70,
+            (this.grid * this.buttonSize),
+            50
+        );
+        
+        // Draw grid
         let count = 0;
-
         for(let y = 0; y < this.grid; y++) {
             for(let x = 0; x < this.grid; x++) {
                 ctx.fillStyle = 'white';
@@ -81,11 +91,11 @@ class HackGroomerScreen extends GameScreen{
     }
 
     public listen(input: UserInput){
-        const isPressed = input.GetMousePressed();
-        let count = 0;
+        const isPressed: Pos = input.GetMousePressed();
+        let count: number = 0;
         if(isPressed) {
-            for(let y = 0; y < this.grid; y++) {
-                for(let x = 0; x < this.grid; x++) {
+            for(let y: number = 0; y < this.grid; y++) {
+                for(let x: number = 0; x < this.grid; x++) {
                     if(this.gridButton[y][x].checkIfPressed(isPressed)) {
                         console.log(this.abc[count]);
                         return;

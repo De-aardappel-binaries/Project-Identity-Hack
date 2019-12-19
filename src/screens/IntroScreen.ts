@@ -6,8 +6,10 @@ class IntroScreen extends GameScreen {
     public profileImageUrls: Array<string>;
     
     private startButton: UIButton;
+    private dialogueCharacter: DialogueCharacter;
 
     private nextScreen: boolean;
+
 
     public constructor(game: Game) {
         super(game);
@@ -17,6 +19,15 @@ class IntroScreen extends GameScreen {
         
         // create button
         this.startButton = new UIButton(this.game.canvas.width / 2 - 100, this.game.canvas.height - 100, 200, 50);
+
+        this.dialogueCharacter = new DialogueCharacter();
+        this.dialogueCharacter.createDialogue([
+            'Je werkt voor de overheid om verdachten...',
+            'op te sporen. Je hebt informatie gehad over...',
+            'een oudere man die het op een 14-jarig...',
+            'meisje heeft gemunt. Het is aan jou om...',
+            'de juiste informatie te vinden. Succes!'
+        ]);
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
@@ -32,10 +43,13 @@ class IntroScreen extends GameScreen {
         ctx.fillStyle = 'black';
         ctx.fillText("Start game", this.game.canvas.width / 2, this.game.canvas.height - 65); 
         ctx.fillText("Druk op start om het spel te starten", this.game.canvas.width / 2, 100); 
+
+        this.dialogueCharacter.drawCharacter(ctx, this.game.canvas);
     }
 
     public listen(input: UserInput) {
         const isPressed = input.GetMousePressed();
+        this.dialogueCharacter.nextDialogueHandler(isPressed);
 
         if(isPressed) {
             if(this.startButton.checkIfPressed(isPressed)) {
@@ -47,6 +61,6 @@ class IntroScreen extends GameScreen {
 
     public adjust(game: Game) {
         if(this.nextScreen)
-            game.switchScreen(new FakeProfileScreen(game));
+            game.switchScreen(new HackGroomerScreen(game));
     }
 }

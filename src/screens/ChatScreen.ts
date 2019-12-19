@@ -87,7 +87,7 @@ class ChatScreen extends GameScreen {
             'Je gaat nu zoeken naar info die kan helpen-', 
             'met het vinden van de dader en slachtoffer', 
             'Klik op de berichten die belangrijk bewijs zijn', 
-            'Onder links staan het aantal hints',
+            'Linksonder staan het aantal hints',
             'Veel geluk!'
         ]);
     }
