@@ -54,15 +54,21 @@ class HackGroomerScreen extends GameScreen{
         // Draw Password crack bar
         const barHeight = 50;
 
-        ctx.fillStyle = 'white';
-        ctx.strokeStyle = 'black';
+        ctx.fillStyle = 'rgba(0,0,0,0.5)';
+        ctx.strokeStyle = 'rgba(0,255,0,1)';
         ctx.fillRect(
             this.startPoint.xPos,
             this.startPoint.yPos - 70,
             (this.grid * this.buttonSize),
             barHeight
         );
-        ctx.fillStyle = 'black';
+        ctx.strokeRect(
+            this.startPoint.xPos,
+            this.startPoint.yPos - 70,
+            (this.grid * this.buttonSize),
+            barHeight
+        );
+        ctx.fillStyle = 'rgba(0,255,0,1)';
         ctx.textBaseline = 'middle';
         ctx.textAlign = 'left';
         ctx.fillText(this.getPassword(), this.startPoint.xPos + 10, this.startPoint.yPos - 70 + (barHeight/2));
@@ -71,8 +77,8 @@ class HackGroomerScreen extends GameScreen{
         let count = 0;
         for(let y = 0; y < this.grid; y++) {
             for(let x = 0; x < this.grid; x++) {
-                ctx.fillStyle = 'white';
-                ctx.strokeStyle = 'black';
+                ctx.fillStyle = 'rgba(0,0,0,0.5)';
+                ctx.strokeStyle = 'rgba(0,255,0,1)';
                 ctx.fillRect(
                     this.startPoint.xPos + (x * this.buttonSize), 
                     this.startPoint.yPos + (y * this.buttonSize),
@@ -85,7 +91,7 @@ class HackGroomerScreen extends GameScreen{
                     this.buttonSize,
                     this.buttonSize
                 );
-                ctx.fillStyle = 'black';
+                ctx.fillStyle = 'rgba(0,255,0,1)';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 ctx.fillText(
