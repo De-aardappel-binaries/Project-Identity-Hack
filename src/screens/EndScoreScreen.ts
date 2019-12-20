@@ -7,7 +7,7 @@ class EndScoreScreen extends GameScreen {
     constructor(game: Game) {
         super(game);
 
-        document.getElementById('body').style.backgroundImage = "url('https://indebuurt.nl/ede/wp-content/uploads/2019/10/arrestatie-foto-anp.jpg')";
+        document.getElementById('body').style.backgroundImage = "url('./assets/images/Groomer_arrest.png')";
 
         // this.scores = new Scores();
         this.dialogeCharacter = new DialogueCharacter();
@@ -19,9 +19,6 @@ class EndScoreScreen extends GameScreen {
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
-        // Draw groomer arrest screen
-        document.getElementById('body').style.backgroundImage = "url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ce692904-27d8-4b2b-ab53-f70852161b7b/d6y0xpw-509ac242-f4de-417f-ba27-f365b5d368b4.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2NlNjkyOTA0LTI3ZDgtNGIyYi1hYjUzLWY3MDg1MjE2MWI3YlwvZDZ5MHhwdy01MDlhYzI0Mi1mNGRlLTQxN2YtYmEyNy1mMzY1YjVkMzY4YjQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.hZY1P4V9MQLTVIvkDgRG18mTiZ4PrMM-kspYnrCmvAg')";
-
         // Draw dialogue character
         this.dialogeCharacter.drawCharacter(ctx, this.game.canvas);
 
