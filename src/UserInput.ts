@@ -18,7 +18,7 @@ class UserInput {
         // Register the arrow methods as listeners to keyevents
         window.addEventListener("mousedown", this.mouseDown);
         window.addEventListener("mouseup", this.mouseUp);
-        // window.addEventListener("mousemove", this.mouseMove);
+        window.addEventListener("mousemove", this.mouseMove);
     }
 
     /**
@@ -53,8 +53,11 @@ class UserInput {
         this.holdButton = false;
     }
 
-    // private mouseMove = (ev: MouseEvent) => {
-    //    	this.position = { xPos: ev.clientX, yPos: ev.clientY };
-    // }
+    /**
+     * Event handler for mouse movement
+     */
+    private mouseMove = (ev: MouseEvent) => {
+       	this.position = { xPos: ev.clientX, yPos: ev.clientY };
+    }
 
 }

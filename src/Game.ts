@@ -6,7 +6,6 @@ class Game {
     public readonly canvas: HTMLCanvasElement;
     public readonly ctx: CanvasRenderingContext2D;
     public readonly input: UserInput;
-    public readonly scores: Scores;
     public readonly gameTime: GameTime;
 
     // Holds the screen that must be displayed each loop
@@ -22,7 +21,6 @@ class Game {
 
         // Instantiate all other attributes
         this.input = new UserInput();
-        this.scores = new Scores();
         GameTime.setTime(300);
 
         // Set the initial screen
