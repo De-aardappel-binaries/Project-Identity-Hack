@@ -87,7 +87,7 @@ class ChatScreen extends GameScreen {
             'Je gaat nu zoeken naar info die kan helpen-', 
             'met het vinden van de dader en slachtoffer', 
             'Klik op de berichten die belangrijk bewijs zijn', 
-            'Onder links staan het aantal hints',
+            'Linksonder staan het aantal hints',
             'Veel geluk!'
         ]);
     }
@@ -229,6 +229,9 @@ class ChatScreen extends GameScreen {
         }
     }
 
+    /**
+     * this function generates all buttons for the loaded chat window
+     */
     private createChatButtons() {
         this.chatBtns = [];
         
@@ -248,15 +251,4 @@ class ChatScreen extends GameScreen {
             game.switchScreen(new EndScoreScreen(game));
     }
 
-}
-
-interface Chat {
-    chatName: string,
-    chatMessages: ChatMessage[]
-}
-
-interface ChatMessage {
-    message: string,
-    self: boolean,
-    groomerDetail?: number
 }

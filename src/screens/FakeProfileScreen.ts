@@ -178,6 +178,9 @@ class FakeProfileScreen extends GameScreen {
         }
     }
 
+    /**
+     * loads the next profile of the fake profile list
+     */
     private setNewProfile() {
         if (!(this.currentProfile < this.profiles.length -1)) {
             this.showNextLevelButton = true;

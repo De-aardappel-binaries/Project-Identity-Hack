@@ -38,30 +38,23 @@ class UserInput {
         }
     }
 
-    // TODO add methods that expose the mouse state to the game
-    
-    //----------------- Event Handler (Arrow) methods -------------------------
-
-    /*
-     * Arrow method that catches keydown events
-     * WARNING: DO NOT USE OR REMOVE THIS METHOD
+    /**
+     * Event handler for mouse down
      */
     private mouseDown = (ev: MouseEvent) => {
         this.buttonDown = true;
     }
 
-    /*
-     * Arrow method that catches keydown events
-     * WARNING: DO NOT USE OR REMOVE THIS METHOD
+    /**
+     * Event handler for mouse up
      */
     private mouseUp = (ev: MouseEvent) => {
         this.buttonDown = false;
         this.holdButton = false;
     }
 
-    /*
-     * Arrow method that catches keydown events
-     * WARNING: DO NOT USE OR REMOVE THIS METHOD
+    /**
+     * Event handler for mouse movement
      */
     private mouseMove = (ev: MouseEvent) => {
        	this.position = { xPos: ev.clientX, yPos: ev.clientY };

@@ -6,7 +6,6 @@ class Game {
     public readonly canvas: HTMLCanvasElement;
     public readonly ctx: CanvasRenderingContext2D;
     public readonly input: UserInput;
-    public readonly scores: Scores;
     public readonly gameTime: GameTime;
 
     // Holds the screen that must be displayed each loop
@@ -22,11 +21,12 @@ class Game {
 
         // Instantiate all other attributes
         this.input = new UserInput();
-        this.scores = new Scores();
         GameTime.setTime(300);
 
         // Set the initial screen
         this.currentScreen = new IntroScreen(this);
+
+        GameTime.setTimerPos(true, true);
 
         this.loop();
     }
@@ -54,19 +54,10 @@ class Game {
             this.currentScreen instanceof LostScreen
         )) {
             
-        if(GameTime.returnTime() <= 0) {
-            this.switchScreen(new LostScreen(this));
-        }
-            this.ctx.textAlign = "right";
-            this.ctx.textBaseline = "bottom";
-            this.ctx.strokeStyle = "black";
-            this.ctx.font = "30px Arial";
-            this.ctx.fillStyle = 'white';
-            this.ctx.fillRect(this.canvas.width -100, 0, 100, 75);
-            this.ctx.fillStyle = 'black';
-            this.ctx.fillText(GameTime.returnTimeFormatted(), this.canvas.width - 25, 50);
-            this.ctx.rect(this.canvas.width -100, 0, 100, 75);
-            this.ctx.stroke(); 
+            if(GameTime.returnTime() <= 0) {
+                this.switchScreen(new LostScreen(this));
+            }
+            GameTime.drawTimer(this);
         }
 
         // Request the next animation frame
