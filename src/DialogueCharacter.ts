@@ -3,6 +3,7 @@ class DialogueCharacter {
     private xPos: number = -0;
     private dialogue: Array<string> = [];
     private dialogueCharacterImage: HTMLImageElement;
+    private shouldClickInterupt: boolean = false;
 
     constructor() {
         let character = new Image();
@@ -102,13 +103,19 @@ class DialogueCharacter {
                 this.hideCharacter();
             
             if(this.dialogue.length >= 1) {
-                // this disables the click event for all buttons on screen
-                input = { xPos: -1, yPos: -1 };
+                this.shouldClickInterupt = true;
                 this.dialogue.shift();
+            }            
+
+            // this disables the click event for all buttons on screen
+            if(this.dialogue.length >= 0) {
+                if(this.shouldClickInterupt)
+                    input = { xPos: -1, yPos: -1 };
+
+                this.shouldClickInterupt = false;
             }
         }
 
         return input;
     }
-
 }
