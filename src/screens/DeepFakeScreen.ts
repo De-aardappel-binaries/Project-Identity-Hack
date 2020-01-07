@@ -77,7 +77,7 @@ class DeepFakeScreen extends GameScreen {
         // Creates Dialogue
         this.dialogueCharacter = new DialogueCharacter();
         this.dialogueCharacter.createDialogue([
-            'De dader heeft een aantal deepfakes op zijn pc\nstaan. Zoek hierin de verschillen.\nVeel succes!'
+            'De dader heeft een aantal deepfake foto\'s op zijn\npc staan. Zoek hierin de verschillen.\n\nVeel succes!'
         ]);
     }
     

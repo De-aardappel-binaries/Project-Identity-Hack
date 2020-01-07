@@ -83,7 +83,7 @@ class ChatScreen extends GameScreen {
         });
 
         this.dialogueCharacter.createDialogue([
-            'Je hebt de chat app gevonden. Je gaat nu zoeken naar info\ndie kan helpen met het vinden van de dader\nen het slachtoffer. Klik op de berichten die\nbelangrijk bewijs zijn.\nLinksonder staan het aantal bewijsstukken die je\nnog moet verzamelen. Veel succes!'
+            'Je hebt de chat app gevonden. Je gaat nu zoeken\nnaar info die kan helpen met het vinden van\nde dader en het slachtoffer. Klik op de berichten\ndie belangrijk bewijs zijn. Linksonder staat het\naantal bewijsstukken die je nog moet verzamelen.\nBij een fout antwoord gaat er 30 seconden van je\ntijd af.\n\nVeel succes!'
         ]);
     }
     
@@ -200,17 +200,17 @@ class ChatScreen extends GameScreen {
 
                         if(this.chats[this.currentChat].chatMessages[index].groomerDetail === 1) {
 
-                            this.dialogueCharacter.createDialogue(['Je hebt een goed detail gevonden']);
+                            this.dialogueCharacter.createDialogue(['Je hebt een bewijsstuk gevonden!']);
                             this.chats[this.currentChat].chatMessages[index].groomerDetail = 2;
                             this.hints--;
 
                         } else if(this.chats[this.currentChat].chatMessages[index].groomerDetail === 2) {
 
-                            this.dialogueCharacter.createDialogue(['Je hebt hier al op gedrukt']);
+                            this.dialogueCharacter.createDialogue(['Je hebt hier al op gedrukt!']);
 
                         } else {
 
-                            this.dialogueCharacter.createDialogue(['Dit is geen waardevolle info', 'Dit gaat van je tijd af']);
+                            this.dialogueCharacter.createDialogue(['Dit is helaas geen waardevolle info.']);
                             this.chats[this.currentChat].chatMessages[index].groomerDetail = 2;
                             GameTime.removeTime(30);
 

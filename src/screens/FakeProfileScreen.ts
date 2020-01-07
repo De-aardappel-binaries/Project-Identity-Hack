@@ -6,8 +6,8 @@ class FakeProfileScreen extends GameScreen {
         {
             profileImage: "./assets/images/profile-pics/boy1.png",
             fake: true,
-            textLine1: "Ik ben een vrolijke, 15-jarige jongen",
-            textLine2: "op zoek naar nieuwe vrienden. Ik hou van foto's."
+            textLine1: "Ik ben een vrolijke, 15-jarige jongen, op zoek naar",
+            textLine2: "nieuwe vrienden. Ik deel graag foto's met anderen."
         },
         {
             profileImage: "./assets/images/profile-pics/girl1.png",
@@ -18,8 +18,8 @@ class FakeProfileScreen extends GameScreen {
         {
             profileImage: "./assets/images/profile-pics/FPBlankProfilePic.png",
             fake: false,
-            textLine1: "Ik ben een 42 jarige man. Mijn interesses zijn",
-            textLine2: "auto's, computers en voetbal."
+            textLine1: "Ik ben een 42 jarige man. Mijn interesses",
+            textLine2: "zijn auto's, computers en voetbal."
         },
         {
             profileImage: "./assets/images/profile-pics/boy2.png",
@@ -40,10 +40,6 @@ class FakeProfileScreen extends GameScreen {
     private searchBarImage: HTMLImageElement;
     private profilePicLineImage: HTMLImageElement;
     private profilePicImage : HTMLImageElement;
-    private profileTextImage : HTMLImageElement;
-    private realButtonImage : HTMLImageElement;
-    private fakeButtonImage : HTMLImageElement;
-    private nextLevelButtonImage : HTMLImageElement;
     private realButton : UIButton;
     private fakeButton : UIButton;
     private nextLevelButton : UIButton;
@@ -80,10 +76,6 @@ class FakeProfileScreen extends GameScreen {
         this.realButton = new UIButton(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200, 298, 149);
         this.fakeButton = new UIButton(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149);
 
-        let nextLevelButtonImg = new Image();
-        nextLevelButtonImg.src = "./assets/images/VolgendLevelButton.png";
-        this.nextLevelButtonImage = nextLevelButtonImg;
-
         this.nextLevelButton = new UIButton(game.canvas.width / 2 - 298, game.canvas.height / 2, 596, 149);
         
         this.showNextLevelButton = false;
@@ -91,7 +83,7 @@ class FakeProfileScreen extends GameScreen {
         this.dialogueCharacter = new DialogueCharacter();
 
         this.dialogueCharacter.createDialogue([
-            "Je hebt de social media profielen van de dader\ngevonden. Zoek uit of ze hem zelf beschrijven,\nof dat ze gemaakt zijn om jongeren te misleiden.\nElk fout antwoord zorgt voor -10 seconden.\nVeel succes."
+            "Je hebt de social media profielen van de dader\ngevonden. Zoek uit of ze hem zelf beschrijven,\nof dat ze gemaakt zijn om jongeren te misleiden.\nElk fout antwoord kost 10 seconden van je tijd.\n\nVeel succes!"
         ]);
     }
 
@@ -164,7 +156,7 @@ class FakeProfileScreen extends GameScreen {
                     this.setNewProfile();
                 } else {
                     this.dialogueCharacter.createDialogue([
-                        "Dat antwoord was helaas fout. -10 seconden!\nProbeer het opnieuw!"
+                        "Dat antwoord was helaas fout. Dat kost je\n10 seconden! Probeer het opnieuw!"
                     ]);
                     GameTime.removeTime(10);
                 }
@@ -177,7 +169,7 @@ class FakeProfileScreen extends GameScreen {
                     this.setNewProfile();
                 } else {
                     this.dialogueCharacter.createDialogue([
-                        "Dat antwoord was helaas fout. -10 seconden!\nProbeer het opnieuw!"
+                        "Dat antwoord was helaas fout. Dat kost je\n10 seconden! Probeer het opnieuw!"
                     ]);
                     GameTime.removeTime(10);
                 }
