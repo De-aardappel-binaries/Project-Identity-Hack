@@ -28,11 +28,13 @@ class DialogueCharacter {
         );
         
         if(this.dialogue[0] !== undefined) {
-            ctx.fillText(
-                this.dialogue[0], 
-                canvas.width -380 - this.xPos, 
-                canvas.height -260
-            );
+            this.dialogue[0].split("\n").forEach((msg, index)=> {
+                ctx.fillText(
+                   msg, 
+                   canvas.width -380 - this.xPos, 
+                   canvas.height -270 + (index * 20)
+               );
+            })
         }
 
     }
