@@ -7,6 +7,8 @@ class Game {
     public readonly ctx: CanvasRenderingContext2D;
     public readonly input: UserInput;
     public readonly gameTime: GameTime;
+    
+    public static username: string;
 
     // Holds the screen that must be displayed each loop
     private currentScreen: GameScreen;
