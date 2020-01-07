@@ -83,12 +83,7 @@ class ChatScreen extends GameScreen {
         });
 
         this.dialogueCharacter.createDialogue([
-            'Je hebt de chat app gevonden', 
-            'Je gaat nu zoeken naar info die kan helpen-', 
-            'met het vinden van de dader en slachtoffer', 
-            'Klik op de berichten die belangrijk bewijs zijn', 
-            'Linksonder staan het aantal hints',
-            'Veel geluk!'
+            'Je hebt de chat app gevonden. Je gaat nu zoeken naar info\ndie kan helpen met het vinden van de dader\nen het slachtoffer. Klik op de berichten die\nbelangrijk bewijs zijn.\nLinksonder staan het aantal bewijsstukken die je\nnog moet verzamelen. Veel succes!'
         ]);
     }
     
