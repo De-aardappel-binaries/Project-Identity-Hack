@@ -15,18 +15,38 @@ class DeepFakeScreen extends GameScreen {
             differenceButton1:{
                     height: 0.07,
                     width: 0.1,
-                    x: 0.434,
-                    y: 0.27,
+                    x: 0.3,
+                    y: 0.45,
             },
             differenceButton2:{
                 height: 0.07,
-                width: 0.1,
+                width: 0.2,
                 x: 0.44,
                 y: 0.88,
             },
-            imageUrlFake: "./assets/images/deepfake.jpg",
-            imageUrlOriginal: "./assets/images/original.jpg"
+            imageUrlFake: "./assets/images/original.jpg" ,
+            imageUrlOriginal: "./assets/images/deepfake.png"
+        },
+        {
+            differenceButton1:{
+                    height: 0.07,
+                    width: 0.1,
+                    x: 0.57,
+                    y: 0.4,
+            },
+            differenceButton2:{
+                height: 0.07,
+                width: 0.2,
+                x: 0.3,
+                y: 0.35,
+            },
+            imageUrlFake: "./assets/images/original2.jpg" ,
+            imageUrlOriginal: "./assets/images/deepfake2.png"
         }
+        
+            
+
+       
         
     ]
     private currentDeepFake: number = -1;
@@ -57,7 +77,7 @@ class DeepFakeScreen extends GameScreen {
         // Creates Dialogue
         this.dialogueCharacter = new DialogueCharacter();
         this.dialogueCharacter.createDialogue([
-            'zoek de 2 verschillen'
+            'De dader heeft een aantal deepfakes op zijn pc\nstaan zoek de verschillen!!'
         ]);
     }
     
@@ -115,6 +135,8 @@ class DeepFakeScreen extends GameScreen {
 
     public draw(ctx: CanvasRenderingContext2D) {
         
+        
+
         // Draw boxes
         ctx.fillStyle = 'white';
         ctx.fillRect(
@@ -146,14 +168,13 @@ class DeepFakeScreen extends GameScreen {
         this.dW,
         this.dH)
 
-        // this.game.ctx.fillStyle = "white"
-        // this.game.ctx.fillRect(
-        //     this.DxDeepfake + (this.Dw * 0.44), 
-        //     this.Dy + (this.Dh * 0.88),
-        //     this.Dw * 0.1,
-        //     this.Dh * 0.07
-        // );
-    }
+        // this.differenceButton1.drawDebugButton(ctx)
+        // this.differenceButton2.drawDebugButton(ctx)
+        if (this.difference1 === 1) {this.differenceButton1.drawDebugButton(ctx)}
+        if (this.difference2 === 1) {this.differenceButton2.drawDebugButton(ctx)}
+        
+        this.dialogueCharacter.drawCharacter(ctx, this.game.canvas);
+        }
 
     public checkdifference(){
         if (this.difference1 === 1 && this.difference2 === 1)
@@ -171,6 +192,7 @@ class DeepFakeScreen extends GameScreen {
         if(isPressed){
             if(this.differenceButton1.checkIfPressed(isPressed)) {
                 console.log("inderdaad1")
+                
                 this.difference1 = 1;
                 
                 this.checkdifference()
@@ -186,7 +208,7 @@ class DeepFakeScreen extends GameScreen {
             }
             else GameTime.removeTime(5)
         }
-        this.dialogueCharacter.nextDialogueHandler(input);
+        
         
     }
 
