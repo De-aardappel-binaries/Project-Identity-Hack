@@ -1,6 +1,6 @@
 class DialogueCharacter {
 
-    private xPos: number = -400;
+    private xPos: number = -0;
     private dialogue: Array<string> = [];
     private dialogueCharacterImage: HTMLImageElement;
 
@@ -21,18 +21,18 @@ class DialogueCharacter {
 
         ctx.drawImage(
             this.dialogueCharacterImage, 
-            canvas.width - 1300 - this.xPos, 
-            canvas.height - 650,
-            400,
-            300
+            canvas.width/4.5 - this.xPos , 
+            canvas.height/9,
+            800,
+            800
         );
         
         if(this.dialogue[0] !== undefined) {
             this.dialogue[0].split("\n").forEach((msg, index)=> {
                 ctx.fillText(
                    msg, 
-                   canvas.width -380 - this.xPos, 
-                   canvas.height -270 + (index * 20)
+                   canvas.width/4.4- this.xPos, 
+                   canvas.height/6 + (index * 20)
                );
             })
         }
