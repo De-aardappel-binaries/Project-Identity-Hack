@@ -3,7 +3,7 @@
 
 class ChatScreen extends GameScreen {
 
-    private Chats: Array<Chat> = [
+    private chats: Array<Chat> = [
         {
             chatName: 'Cindy',
             chatMessages: [
@@ -58,7 +58,7 @@ class ChatScreen extends GameScreen {
         this.dialogueCharacter = new DialogueCharacter();
 
         // Create all buttons to select chat
-        this.Chats.forEach((_, index) => {
+        this.chats.forEach((_, index) => {
             this.selectChatBtns.push(
                 new UIButton(
                     this.game.canvas.width * 0.1,
@@ -75,7 +75,7 @@ class ChatScreen extends GameScreen {
         this.createChatButtons();
 
         // count all hidden hints
-        this.Chats.forEach((Chat: Chat) => {
+        this.chats.forEach((Chat: Chat) => {
             Chat.chatMessages.forEach((msg: ChatMessage) => {
                 if (msg.groomerDetail)
                     this.hints++;
@@ -117,7 +117,7 @@ class ChatScreen extends GameScreen {
         ctx.fillStyle = '';
 
         // Draw Chat Users
-        this.Chats.forEach((User: Chat, index: number) => {
+        this.chats.forEach((User: Chat, index: number) => {
             ctx.strokeStyle = "#afafaf";
             ctx.strokeRect(
                 this.game.canvas.width * 0.1,
@@ -163,12 +163,12 @@ class ChatScreen extends GameScreen {
         ctx.font = "26px Arial";
         ctx.textAlign = "left";
         ctx.textBaseline = "middle";
-        ctx.fillText(this.Chats[this.currentChat].chatName, this.game.canvas.width * 0.3 + 10, 25);
+        ctx.fillText(this.chats[this.currentChat].chatName, this.game.canvas.width * 0.3 + 10, 25);
 
         // Chat
         ctx.font = "16px Arial";
         ctx.textBaseline = "top";
-        this.Chats[this.currentChat].chatMessages.forEach((ChatMessage: ChatMessage, index: number) => {
+        this.chats[this.currentChat].chatMessages.forEach((ChatMessage: ChatMessage, index: number) => {
             if(ChatMessage.self) {
                 // Draw message if self typed
                 ctx.fillStyle = 'lightgreen';
@@ -201,22 +201,22 @@ class ChatScreen extends GameScreen {
 
             this.chatBtns.forEach((Btn, index) => {
                 if(Btn.checkIfPressed(isPressed))
-                    if(this.Chats[this.currentChat].chatMessages[index]) {
+                    if(this.chats[this.currentChat].chatMessages[index]) {
 
-                        if(this.Chats[this.currentChat].chatMessages[index].groomerDetail === 1) {
+                        if(this.chats[this.currentChat].chatMessages[index].groomerDetail === 1) {
 
                             this.dialogueCharacter.createDialogue(['Je hebt een goed detail gevonden']);
-                            this.Chats[this.currentChat].chatMessages[index].groomerDetail = 2;
+                            this.chats[this.currentChat].chatMessages[index].groomerDetail = 2;
                             this.hints--;
 
-                        } else if(this.Chats[this.currentChat].chatMessages[index].groomerDetail === 2) {
+                        } else if(this.chats[this.currentChat].chatMessages[index].groomerDetail === 2) {
 
                             this.dialogueCharacter.createDialogue(['Je hebt hier al op gedrukt']);
 
                         } else {
 
                             this.dialogueCharacter.createDialogue(['Dit is geen waardevolle info', 'Dit gaat van je tijd af']);
-                            this.Chats[this.currentChat].chatMessages[index].groomerDetail = 2;
+                            this.chats[this.currentChat].chatMessages[index].groomerDetail = 2;
                             GameTime.removeTime(30);
 
                         }
@@ -235,7 +235,7 @@ class ChatScreen extends GameScreen {
     private createChatButtons() {
         this.chatBtns = [];
         
-        this.Chats[this.currentChat].chatMessages.forEach((ChatMessage: ChatMessage, index: number) => {
+        this.chats[this.currentChat].chatMessages.forEach((ChatMessage: ChatMessage, index: number) => {
             if(ChatMessage.self) {
                 // Draw message if self typed
                 this.chatBtns.push(new UIButton(this.game.canvas.width * 0.9 - 390 , (50 * index) + 60, 380, 40));

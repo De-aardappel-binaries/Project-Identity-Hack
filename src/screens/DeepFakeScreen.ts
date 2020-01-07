@@ -3,11 +3,11 @@
 
 class DeepFakeScreen extends GameScreen {
 
-    private origninal: HTMLImageElement;
-    private deepfakeimage: HTMLImageElement;
+    private original: HTMLImageElement;
+    private deepFakeImage: HTMLImageElement;
 
-    private differenceButtom1: UIButton;
-    private differenceButtom2: UIButton;
+    private differenceButton1: UIButton;
+    private differenceButton2: UIButton;
     private dialogueCharacter: DialogueCharacter;
     
     public deepFakeList: Array<Deepfake> = [
@@ -35,11 +35,11 @@ class DeepFakeScreen extends GameScreen {
     private nextScreen: boolean;
     
 
-    private DxOriginal: number;
-    private DxDeepfake: number;
-    private Dy: number;
-    private Dw: number;
-    private Dh: number;
+    private dxOriginal: number;
+    private dxDeepFake: number;
+    private dY: number;
+    private dW: number;
+    private dH: number;
     private paddingTop: number = this.game.canvas.height*0.10;
     private paddingBottom: number = this.game.canvas.height*0.05;
 
@@ -79,35 +79,35 @@ class DeepFakeScreen extends GameScreen {
         // Import Images
         let imageoriginal = new Image();
         imageoriginal.src = this.deepFakeList[this.currentDeepFake].imageUrlOriginal; // orignele Image
-        this.origninal = imageoriginal;
+        this.original = imageoriginal;
 
         let imageDeepfake = new Image();
         imageDeepfake.src = this.deepFakeList[this.currentDeepFake].imageUrlFake; // deepfakeImage 
-        this.deepfakeimage = imageDeepfake;
+        this.deepFakeImage = imageDeepfake;
 
         // Set buttons
-        this.Dy =  this.paddingTop;
-        this.Dw =  this.game.canvas.width/10*3.5;
-        this.Dh =  this.game.canvas.height * this.game.canvas.width / this.game.canvas.height/2;
-        this.DxOriginal =  this.game.canvas.width / 10 * 1;
-        this.DxDeepfake =  this.game.canvas.width / 2 + this.game.canvas.width/10 * 0.5; 
+        this.dY =  this.paddingTop;
+        this.dW =  this.game.canvas.width/10*3.5;
+        this.dH =  this.game.canvas.height * this.game.canvas.width / this.game.canvas.height/2;
+        this.dxOriginal =  this.game.canvas.width / 10 * 1;
+        this.dxDeepFake =  this.game.canvas.width / 2 + this.game.canvas.width/10 * 0.5; 
 
-        if (this.game.canvas.height - this.Dh -this.paddingTop-this.paddingBottom < 1)
-            this.Dh = this.game.canvas.height - this.paddingBottom - this.paddingTop;
+        if (this.game.canvas.height - this.dH -this.paddingTop-this.paddingBottom < 1)
+            this.dH = this.game.canvas.height - this.paddingBottom - this.paddingTop;
 
         //Deze functie zorgt ervoor dat de klikbutton op de goede plaats komt
-        this.differenceButtom1 = new UIButton(
-            this.DxDeepfake + (this.Dw * this.deepFakeList[this.currentDeepFake].differenceButton1.x), 
-            this.Dy + (this.Dh * this.deepFakeList[this.currentDeepFake].differenceButton1.y),
-            this.Dw * this.deepFakeList[this.currentDeepFake].differenceButton1.width,
-            this.Dh * this.deepFakeList[this.currentDeepFake].differenceButton1.height
+        this.differenceButton1 = new UIButton(
+            this.dxDeepFake + (this.dW * this.deepFakeList[this.currentDeepFake].differenceButton1.x), 
+            this.dY + (this.dH * this.deepFakeList[this.currentDeepFake].differenceButton1.y),
+            this.dW * this.deepFakeList[this.currentDeepFake].differenceButton1.width,
+            this.dH * this.deepFakeList[this.currentDeepFake].differenceButton1.height
         );
 
-        this.differenceButtom2 = new UIButton(
-            this.DxDeepfake + (this.Dw * this.deepFakeList[this.currentDeepFake].differenceButton2.x), 
-            this.Dy + (this.Dh * this.deepFakeList[this.currentDeepFake].differenceButton2.y),
-            this.Dw * this.deepFakeList[this.currentDeepFake].differenceButton2.width,
-            this.Dh * this.deepFakeList[this.currentDeepFake].differenceButton2.height
+        this.differenceButton2 = new UIButton(
+            this.dxDeepFake + (this.dW * this.deepFakeList[this.currentDeepFake].differenceButton2.x), 
+            this.dY + (this.dH * this.deepFakeList[this.currentDeepFake].differenceButton2.y),
+            this.dW * this.deepFakeList[this.currentDeepFake].differenceButton2.width,
+            this.dH * this.deepFakeList[this.currentDeepFake].differenceButton2.height
         );
 
         
@@ -132,19 +132,19 @@ class DeepFakeScreen extends GameScreen {
         
         //originele foto
         this.game.ctx.drawImage(
-        this.origninal, 
-        this.DxOriginal,
-        this.Dy, 
-        this.Dw,
-        this.Dh)
+        this.original, 
+        this.dxOriginal,
+        this.dY, 
+        this.dW,
+        this.dH)
 
         //deepfake foto
         this.game.ctx.drawImage(
-        this.deepfakeimage, 
-        this.DxDeepfake, 
-        this.Dy, 
-        this.Dw,
-        this.Dh)
+        this.deepFakeImage, 
+        this.dxDeepFake, 
+        this.dY, 
+        this.dW,
+        this.dH)
 
         // this.game.ctx.fillStyle = "white"
         // this.game.ctx.fillRect(
@@ -155,7 +155,7 @@ class DeepFakeScreen extends GameScreen {
         // );
     }
 
-    public checkdiffenence(){
+    public checkdifference(){
         if (this.difference1 === 1 && this.difference2 === 1)
         {
             this.setNewDeepFake()
@@ -169,19 +169,19 @@ class DeepFakeScreen extends GameScreen {
         
         const isPressed = input.GetMousePressed();
         if(isPressed){
-            if(this.differenceButtom1.checkIfPressed(isPressed)) {
+            if(this.differenceButton1.checkIfPressed(isPressed)) {
                 console.log("inderdaad1")
                 this.difference1 = 1;
                 
-                this.checkdiffenence()
+                this.checkdifference()
 
                 
             }
-           else if(this.differenceButtom2.checkIfPressed(isPressed)) {
+           else if(this.differenceButton2.checkIfPressed(isPressed)) {
                 console.log("inderdaad2")
                 this.difference2 = 1;
                
-                this.checkdiffenence()
+                this.checkdifference()
 
             }
             else GameTime.removeTime(5)

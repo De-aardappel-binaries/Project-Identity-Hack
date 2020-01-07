@@ -7,7 +7,7 @@ class FakeProfileScreen extends GameScreen {
             profileImage: "./assets/images/profile-pics/boy1.png",
             fake: true,
             textLine1: "Ik ben een vrolijke, 15-jarige jongen",
-            textLine2: "op zoek naar nieuwe vrienden."
+            textLine2: "op zoek naar nieuwe vrienden. Ik hou van foto's."
         },
         {
             profileImage: "./assets/images/profile-pics/girl1.png",
@@ -18,13 +18,14 @@ class FakeProfileScreen extends GameScreen {
         {
             profileImage: "./assets/images/profile-pics/FPBlankProfilePic.png",
             fake: false,
-            textLine1: "Ik ben een 42 jarige man. Mijn interesses zijn auto's,",
-            textLine2: "computers en voetbal."
+            textLine1: "Ik ben een 42 jarige man. Mijn interesses zijn",
+            textLine2: "auto's, computers en voetbal."
         },
         {
             profileImage: "./assets/images/profile-pics/boy2.png",
             fake: true,
             textLine1: "Ik ben Jake, 17 jaar, en ik hou van volleybal.",
+            textLine2: "Ik wil graag contact met meiden van mijn leeftijd."
         },
         {
             profileImage: "./assets/images/profile-pics/girl2.png",
