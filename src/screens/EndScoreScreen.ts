@@ -18,22 +18,19 @@ class EndScoreScreen extends GameScreen {
         
         GameTime.stopTimer();
 
-        // this.setHighScore('test123', GameTime.returnTime()).then(() => {
+        this.setHighScore(Game.username, GameTime.returnTime()).then(() => {
             this.getHighScores().then((res) => {
                 this.highScoreList = res;
             }).catch((res) => {
                 this.highScoreList = res;
             });
-        // }).catch(() => {
-        //     console.error('failed to store highscore, server may be down...');
-        // })
+        }).catch(() => {
+            console.error('failed to store highscore, server may be down...');
+        })
 
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
-        // Draw dialogue character
-        this.dialogeCharacter.drawCharacter(ctx, this.game.canvas);
-
         // Draw boxes
         ctx.fillStyle = 'rgba(0,0,0,0.5)';
         ctx.strokeStyle = 'rgba(0,255,0,1)';
@@ -59,6 +56,10 @@ class EndScoreScreen extends GameScreen {
                 ctx.fillStyle = 'rgba(0,255,0,1)';
                 ctx.fillText(highscore.Name + ' : ' + highscore.Score, this.game.canvas.width / 2, 180 + (54*index)); 
             });
+
+        // Draw dialogue character
+        this.dialogeCharacter.drawCharacter(ctx, this.game.canvas);
+        GameTime.stopTimer();
     }
 
     public listen(input: UserInput) {

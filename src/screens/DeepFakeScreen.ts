@@ -166,8 +166,9 @@ class DeepFakeScreen extends GameScreen {
 
 
     public listen(input: UserInput) { 
-        
-        const isPressed = input.GetMousePressed();
+        let isPressed: Pos = input.GetMousePressed();
+        isPressed = this.dialogueCharacter.nextDialogueHandler(isPressed);
+
         if(isPressed){
             if(this.differenceButton1.checkIfPressed(isPressed)) {
                 console.log("inderdaad1")
@@ -185,9 +186,7 @@ class DeepFakeScreen extends GameScreen {
 
             }
             else GameTime.removeTime(5)
-        }
-        this.dialogueCharacter.nextDialogueHandler(input);
-        
+        }        
     }
 
 

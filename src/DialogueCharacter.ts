@@ -43,30 +43,38 @@ class DialogueCharacter {
      * Shows character when dialoge is available
      */
     private showCharacter() {
-        this.xPos = -3000;
+        console.log('show character');
+        GameTime.stopTimer();
+        this.xPos = -2000;
 
         const animation: number = setInterval(() => {
-            if(this.xPos >= 0)
+            if(this.xPos >= 0) {
+                console.log('done with showing');
                 clearInterval(animation);
+            }
             
-            this.xPos += 32;
+            this.xPos += 64;
 
-        }, 10);
+        }, 5);
     }
 
     /**
      * Hides character when there is no dialoge left
      */
     private hideCharacter() {
+        console.log('hide character');
+        GameTime.startTimer();
         this.xPos = 0;
 
         const animation: number = setInterval(() => {
-            if(this.xPos <= -4000)
+            if(this.xPos <= -2000) {
+                console.log('done with hiding');
                 clearInterval(animation);
+            }
             
-            this.xPos += -32;
+            this.xPos += -64;
 
-        }, 10);
+        }, 5);
     }
 
     /**
@@ -85,7 +93,7 @@ class DialogueCharacter {
     /**
      * Go's to next dialoge
      */
-    public nextDialogueHandler(input: UserInput | Pos) {
+    public nextDialogueHandler(input: UserInput | Pos): Pos {
         if (input instanceof UserInput)
             input = input.GetMousePressed();
             
@@ -93,9 +101,14 @@ class DialogueCharacter {
             if(this.dialogue.length == 1)
                 this.hideCharacter();
             
-            if(this.dialogue.length >= 1)
+            if(this.dialogue.length >= 1) {
+                // this disables the click event for all buttons on screen
+                input = { xPos: -1, yPos: -1 };
                 this.dialogue.shift();
+            }
         }
+
+        return input;
     }
 
 }

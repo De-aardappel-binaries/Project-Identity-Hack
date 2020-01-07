@@ -20,6 +20,12 @@ class HackGroomerScreen extends GameScreen{
 
         this.dialogueCharacter = new DialogueCharacter();
         this.dialogueCharacter.createDialogue([
+            'Je werkt voor de overheid om verdachten...',
+            'op te sporen. Je hebt informatie gehad over...',
+            'een oudere man die het op een 14-jarig...',
+            'meisje heeft gemunt. Het is aan jou om...',
+            'de juiste informatie te vinden. Succes!',
+            '',
             'Je gaat nu eerst de computer van',
             'de oudere man hacken.',
             'Probeer letters te vinden die het wachtwoord',
@@ -32,9 +38,9 @@ class HackGroomerScreen extends GameScreen{
 
         this.startPoint = { 
             xPos: (game.canvas.width - (this.buttonSize * this.grid)) / 2, 
-            yPos: 200
+            yPos: 100
         }
-        this.randomizeString();
+        // this.randomizeString();
         // randomize hier de abc string
 
         for(let y = 0; y < this.grid; y++) {
@@ -144,8 +150,9 @@ class HackGroomerScreen extends GameScreen{
     }
 
     public listen(input: UserInput){
-        const isPressed: Pos = input.GetMousePressed();
-        this.dialogueCharacter.nextDialogueHandler(isPressed);
+        let isPressed: Pos = input.GetMousePressed();
+        isPressed = this.dialogueCharacter.nextDialogueHandler(isPressed);
+
         let count: number = 0;
         if(isPressed) {
             for(let y: number = 0; y < this.grid; y++) {

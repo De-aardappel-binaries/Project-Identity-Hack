@@ -188,8 +188,8 @@ class ChatScreen extends GameScreen {
     }
 
     public listen(input: UserInput) {
-        const isPressed = input.GetMousePressed();
-        this.dialogueCharacter.nextDialogueHandler(isPressed);
+        let isPressed: Pos = input.GetMousePressed();
+        isPressed = this.dialogueCharacter.nextDialogueHandler(isPressed);
         
         if(isPressed) {
             this.selectChatBtns.forEach((selectBtn, index) => {
