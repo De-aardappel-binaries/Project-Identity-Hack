@@ -51,7 +51,7 @@ class FakeProfileScreen extends GameScreen {
     public constructor(game: Game) {
         super(game);
 
-        GameTime.setTimerPos(false, true);
+        GameTime.setTimerPos(true, true);
 
         // document.getElementById('body').style.backgroundImage = "";
         // document.getElementById('body').style.backgroundColor = "#0f0f0f";

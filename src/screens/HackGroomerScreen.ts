@@ -10,13 +10,15 @@ class HackGroomerScreen extends GameScreen{
     private dialogueCharacter = new DialogueCharacter();
 
     private abc: Array<string> = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-    private password = ['groomer', 'deepfake', 'hacking', 'wifi']; // TODO write more passwords
+    private password = ['deepfake', 'hacking', 'wifi', 'internet', 'computer', 'games', 'socialmedia']; // TODO write more passwords
     private charactersFound: Array<string> = [];
     private currentPassword: string;
     private startPoint: Pos;
 
     constructor(game: Game) {
         super(game);
+
+        GameTime.setTimerPos(true, true);
 
         this.dialogueCharacter = new DialogueCharacter();
         this.dialogueCharacter.createDialogue([
@@ -30,7 +32,7 @@ class HackGroomerScreen extends GameScreen{
             xPos: (game.canvas.width - (this.buttonSize * this.grid)) / 2, 
             yPos: 100
         }
-        // this.randomizeString();
+        this.randomizeString();
         // randomize hier de abc string
 
         for(let y = 0; y < this.grid; y++) {
@@ -165,19 +167,16 @@ class HackGroomerScreen extends GameScreen{
                                 isCharacterFound = true;
                             }
                         }
-                        
                         if(!isDuplicate) {
                             this.charactersFound.push(this.abc[count]);
                         } else this.dialogueCharacter.createDialogue(['Deze letter heb je al ingevuld!']);
 
                         if(!isCharacterFound) {
-                            this.dialogueCharacter.createDialogue(['Fout, min 5 seconden!']);
+                            this.dialogueCharacter.createDialogue(['Dit klopt niet, dit kost je 5 seconden!']);
                             GameTime.removeTime(5);
                         }
-
                         return;
                     }
- 
                     if(this.abc.length-1 == count)
                         count = 0;
                     else

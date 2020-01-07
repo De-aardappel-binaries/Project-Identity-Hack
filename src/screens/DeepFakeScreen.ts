@@ -66,6 +66,8 @@ class DeepFakeScreen extends GameScreen {
     constructor(game: Game) {
         super(game);
 
+        GameTime.setTimerPos(true, true);
+
         this.setNewDeepFake()
 
         // Set background

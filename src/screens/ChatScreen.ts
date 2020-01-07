@@ -55,6 +55,8 @@ class ChatScreen extends GameScreen {
     constructor(game: Game) {
         super(game);
 
+        GameTime.setTimerPos(true, true);
+
         this.dialogueCharacter = new DialogueCharacter();
 
         // Create all buttons to select chat
