@@ -8,9 +8,6 @@ class UserInput {
     private holdButton: boolean = false;
     private buttonDown : boolean = false;
 
-    // Array that holds the state of all keys
-    private keyCodeStates : boolean[] = new Array<boolean>();
-
     /**
      * Constructs a new KeyListener.
      */

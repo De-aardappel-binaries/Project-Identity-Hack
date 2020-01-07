@@ -3,7 +3,7 @@
 
 class LostScreen extends GameScreen {
 
-    private dialogeCharacter: DialogueCharacter;
+    private dialogueCharacter: DialogueCharacter;
 
     constructor(game: Game) {
         super(game);
@@ -11,8 +11,8 @@ class LostScreen extends GameScreen {
         document.getElementById('body').style.backgroundImage = "";
         document.getElementById('body').style.backgroundImage = "url('./assets/images/GameOver.png')";
 
-        this.dialogeCharacter = new DialogueCharacter();
-        this.dialogeCharacter.createDialogue([
+        this.dialogueCharacter = new DialogueCharacter();
+        this.dialogueCharacter.createDialogue([
             'He! jammer joh.', 
             'Je hebt de dader niet te pakken.',
             'Nu ben je ontslagen.',
@@ -21,11 +21,11 @@ class LostScreen extends GameScreen {
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
-        this.dialogeCharacter.drawCharacter(ctx, this.game.canvas);
+        this.dialogueCharacter.drawCharacter(ctx, this.game.canvas);
     }
 
     public listen(input: UserInput) {
-        this.dialogeCharacter.nextDialogueHandler(input);
+        this.dialogueCharacter.nextDialogueHandler(input);
     }
 
 }
