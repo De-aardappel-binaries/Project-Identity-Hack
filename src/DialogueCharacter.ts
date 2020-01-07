@@ -1,6 +1,6 @@
 class DialogueCharacter {
 
-    private xPos: number = -400;
+    private xPos: number = -0;
     private dialogue: Array<string> = [];
     private dialogueCharacterImage: HTMLImageElement;
 
@@ -21,18 +21,20 @@ class DialogueCharacter {
 
         ctx.drawImage(
             this.dialogueCharacterImage, 
-            canvas.width - 400 - this.xPos, 
-            canvas.height - 300,
-            400,
-            300
+            canvas.width/4.5 - this.xPos , 
+            canvas.height/9,
+            800,
+            800
         );
         
         if(this.dialogue[0] !== undefined) {
-            ctx.fillText(
-                this.dialogue[0], 
-                canvas.width -380 - this.xPos, 
-                canvas.height -260
-            );
+            this.dialogue[0].split("\n").forEach((msg, index)=> {
+                ctx.fillText(
+                   msg, 
+                   canvas.width/4.4- this.xPos, 
+                   canvas.height/6 + (index * 20)
+               );
+            })
         }
 
     }
@@ -41,13 +43,13 @@ class DialogueCharacter {
      * Shows character when dialoge is available
      */
     private showCharacter() {
-        this.xPos = -400;
+        this.xPos = -3000;
 
         const animation: number = setInterval(() => {
             if(this.xPos >= 0)
                 clearInterval(animation);
             
-            this.xPos += 16;
+            this.xPos += 32;
 
         }, 10);
     }
@@ -59,10 +61,10 @@ class DialogueCharacter {
         this.xPos = 0;
 
         const animation: number = setInterval(() => {
-            if(this.xPos <= -400)
+            if(this.xPos <= -4000)
                 clearInterval(animation);
             
-            this.xPos += -16;
+            this.xPos += -32;
 
         }, 10);
     }
