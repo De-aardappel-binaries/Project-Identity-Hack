@@ -3,4 +3,5 @@ interface Profiles {
     fake : boolean;
     textLine1 : string;
     textLine2? : string;
+    textLine3? : string;
 }

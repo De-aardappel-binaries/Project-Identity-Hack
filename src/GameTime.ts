@@ -70,13 +70,13 @@ class GameTime {
         const xPosText: number = this.drawRight ? game.canvas.width - 25  : 80;
         const yPosText: number = this.drawTop   ? 50                      : game.canvas.height - 25;
 
-        game.ctx.textAlign = "right";
-        game.ctx.textBaseline = "bottom";
-        game.ctx.strokeStyle = "black";
-        game.ctx.font = "30px Arial";
-        game.ctx.fillStyle = 'white';
+        game.ctx.textAlign = 'right';
+        game.ctx.textBaseline = 'bottom';
+        game.ctx.strokeStyle = 'rgba(0,255,0,1)';
+        game.ctx.font = '30px Arial';
+        game.ctx.fillStyle = 'rgba(0,0,0,0.5)';
         game.ctx.fillRect(xPosRect, yPosRect, 100, 75);
-        game.ctx.fillStyle = 'black';
+        game.ctx.fillStyle = 'rgba(0,255,0,1)';
         game.ctx.fillText(GameTime.returnTimeFormatted(), xPosText, yPosText);
         game.ctx.rect(xPosRect, yPosRect, 100, 75);
         game.ctx.stroke(); 

@@ -20,18 +20,8 @@ class HackGroomerScreen extends GameScreen{
 
         this.dialogueCharacter = new DialogueCharacter();
         this.dialogueCharacter.createDialogue([
-            'Je werkt voor de overheid om verdachten...',
-            'op te sporen. Je hebt informatie gehad over...',
-            'een oudere man die het op een 14-jarig...',
-            'meisje heeft gemunt. Het is aan jou om...',
-            'de juiste informatie te vinden. Succes!',
-            '',
-            'Je gaat nu eerst de computer van',
-            'de oudere man hacken.',
-            'Probeer letters te vinden die het wachtwoord',
-            'kan bevatten totdat je het wachtwoord hebt.',
-            'Elke fout kost 5 seconden van je tijd.',
-            'success!'
+            'Je werkt voor de overheid om verdachten op te\nsporen. Je hebt informatie gehad over een oudere\nman die het op een 14-jarig meisje heeft\ngemunt. Het is aan jou om de juiste\ninformatie te vinden.',
+            'Je gaat nu eerst de computer van de oudere man\nhacken. Probeer letters te vinden die het\nwachtwoord kan bevattentotdat je het wachtwoord\nhebt. Elke fout kost 5 seconden van je tijd.\n\nSuccess!',
         ]);
         
         this.currentPassword = this.password[Math.floor(Math.random()*(this.password.length-1))];

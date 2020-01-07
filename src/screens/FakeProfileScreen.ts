@@ -54,8 +54,10 @@ class FakeProfileScreen extends GameScreen {
     public constructor(game: Game) {
         super(game);
 
-        document.getElementById('body').style.backgroundImage = "";
-        document.getElementById('body').style.backgroundColor = "#e4e4e4";
+        GameTime.setTimerPos(false, true);
+
+        // document.getElementById('body').style.backgroundImage = "";
+        // document.getElementById('body').style.backgroundColor = "#0f0f0f";
         this.setNewProfile();
 
         let topNavImg = new Image();
@@ -74,27 +76,14 @@ class FakeProfileScreen extends GameScreen {
         profilePicLineImg.src = "./assets/images/FPProfilePicLine.png";
         this.profilePicLineImage = profilePicLineImg;
 
-        let profileTextImg = new Image();
-        profileTextImg.src = "./assets/images/FPProfileText.png";
-        this.profileTextImage = profileTextImg;
-
-        let realButtonImg = new Image();
-        realButtonImg.src = "./assets/images/EchtButton.png";22
-        this.realButtonImage = realButtonImg;
-
         this.realButton = new UIButton(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200, 298, 149);
-
-        let fakeButtonImg = new Image();
-        fakeButtonImg.src = "./assets/images/NepButton.png";
-        this.fakeButtonImage = fakeButtonImg;
-
         this.fakeButton = new UIButton(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149);
 
         let nextLevelButtonImg = new Image();
         nextLevelButtonImg.src = "./assets/images/VolgendLevelButton.png";
         this.nextLevelButtonImage = nextLevelButtonImg;
 
-        this.nextLevelButton = new UIButton(20, 100, 200, 100);
+        this.nextLevelButton = new UIButton(game.canvas.width / 2 - 298, game.canvas.height / 2, 596, 149);
         
         this.showNextLevelButton = false;
 
@@ -112,33 +101,59 @@ class FakeProfileScreen extends GameScreen {
         ctx.drawImage(this.topNavImage, 0, 0, this.game.canvas.width, 74);
         ctx.drawImage(this.logoImage, 10, 10, 54, 54);
         ctx.drawImage(this.searchBarImage, this.game.canvas.width - 650, 10);
-        ctx.drawImage(this.profilePicImage, this.game.canvas.width / 2 - 48, this.game.canvas.height / 2 - 248, 96, 96);
-        ctx.drawImage(this.profilePicLineImage, this.game.canvas.width / 2 - 50, this.game.canvas.height / 2 - 250, 100, 100);
-        ctx.drawImage(this.profileTextImage, this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
+        
         if(!this.showNextLevelButton) {
-            ctx.drawImage(this.realButtonImage, this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200);
-            ctx.drawImage(this.fakeButtonImage, this.game.canvas.width / 2, this.game.canvas.height / 2 + 200);
+            ctx.drawImage(this.profilePicImage, this.game.canvas.width / 2 - 48, this.game.canvas.height / 2 - 248, 96, 96);
+            ctx.drawImage(this.profilePicLineImage, this.game.canvas.width / 2 - 50, this.game.canvas.height / 2 - 250, 100, 100);
+            // this.fakeButton.drawDebugButton(ctx);
+            // this.realButton.drawDebugButton(ctx);
+            ctx.fillStyle = 'rgba(0,0,0,0.5)';
+            ctx.strokeStyle = 'rgba(0,255,0,1)';
+
+            // real
+            ctx.fillRect(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200, 298, 149)
+            ctx.strokeRect(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200, 298, 149)
+            // fake
+            ctx.fillRect(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149)
+            ctx.strokeRect(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149)
+
+            ctx.fillStyle = 'rgba(0,255,0,1)';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            ctx.fillText('Echt', this.game.canvas.width / 2 - 149, this.game.canvas.height / 2 + 275);
+            ctx.fillText('Nep', this.game.canvas.width / 2 + 149,  this.game.canvas.height / 2 + 275);
+
+            // draw text
+            ctx.textAlign = "center";
+            ctx.font = "20px Arial";
+            ctx.fillStyle = 'rgba(0,0,0,0.5)';
+            ctx.fillRect(this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
+            ctx.strokeRect(this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
+            ctx.fillStyle = 'rgba(0,255,0,1)';
+            ctx.fillText(this.profiles[this.currentProfile].textLine1, this.game.canvas.width / 2, this.game.canvas.height / 2);
+            if (this.profiles[this.currentProfile].textLine2 !== undefined)
+                ctx.fillText(this.profiles[this.currentProfile].textLine2, this.game.canvas.width / 2, this.game.canvas.height / 2 + 30);
+            if (this.profiles[this.currentProfile].textLine3 !== undefined)
+                ctx.fillText(this.profiles[this.currentProfile].textLine3, this.game.canvas.width / 2, this.game.canvas.height / 2 + 30);
         }
         if(this.showNextLevelButton) {
-            ctx.drawImage(this.nextLevelButtonImage, 20, 100);
+            ctx.fillStyle = 'rgba(0,0,0,0.5)';
+            ctx.fillRect(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2, 596, 149);
+            ctx.strokeRect(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2, 596, 149);
+            ctx.fillStyle = 'rgba(0,255,0,1)';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('Volgend level', this.game.canvas.width / 2, this.game.canvas.height / 2 + 75);
         }
-
-        // draw text
-        ctx.textAlign = "center";
-        ctx.font = "20px Arial";
-        ctx.fillStyle = 'black';
-        ctx.fillText(this.profiles[this.currentProfile].textLine1, this.game.canvas.width / 2, this.game.canvas.height / 2);
-        if (this.profiles[this.currentProfile].textLine2 !== undefined) {
-            ctx.fillText(this.profiles[this.currentProfile].textLine2, this.game.canvas.width / 2, this.game.canvas.height / 2 + 30);
-        }
-
+        
         // draw dialogue character
         this.dialogueCharacter.drawCharacter(ctx, this.game.canvas);
     }
     
     public listen(input: UserInput){
-        const isPressed = input.GetMousePressed();
-        this.dialogueCharacter.nextDialogueHandler(isPressed);
+        let isPressed = input.GetMousePressed();
+        isPressed = this.dialogueCharacter.nextDialogueHandler(isPressed);
 
         if(isPressed) {
 
