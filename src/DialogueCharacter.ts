@@ -21,8 +21,8 @@ class DialogueCharacter {
 
         ctx.drawImage(
             this.dialogueCharacterImage, 
-            canvas.width - 400 - this.xPos, 
-            canvas.height - 300,
+            canvas.width - 1300 - this.xPos, 
+            canvas.height - 650,
             400,
             300
         );
@@ -43,13 +43,13 @@ class DialogueCharacter {
      * Shows character when dialoge is available
      */
     private showCharacter() {
-        this.xPos = -400;
+        this.xPos = -3000;
 
         const animation: number = setInterval(() => {
             if(this.xPos >= 0)
                 clearInterval(animation);
             
-            this.xPos += 16;
+            this.xPos += 32;
 
         }, 10);
     }
@@ -61,10 +61,10 @@ class DialogueCharacter {
         this.xPos = 0;
 
         const animation: number = setInterval(() => {
-            if(this.xPos <= -400)
+            if(this.xPos <= -4000)
                 clearInterval(animation);
             
-            this.xPos += -16;
+            this.xPos += -32;
 
         }, 10);
     }
