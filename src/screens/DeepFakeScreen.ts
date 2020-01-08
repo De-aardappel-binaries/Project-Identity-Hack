@@ -13,6 +13,22 @@ class DeepFakeScreen extends GameScreen {
     public deepFakeList: Array<Deepfake> = [
         {
             differenceButton1:{
+                    height: 0.05,
+                    width: 0.1,
+                    x: 0.34,
+                    y: 0.42,
+            },
+            differenceButton2:{
+                height: 0.2,
+                width: 0.1,
+                x: 0.12,
+                y: 0.38,
+            },
+            imageUrlFake: "./assets/images/original3.jpg" ,
+            imageUrlOriginal: "./assets/images/deepfake3.png"
+        },
+        {
+            differenceButton1:{
                     height: 0.07,
                     width: 0.1,
                     x: 0.3,
@@ -42,7 +58,8 @@ class DeepFakeScreen extends GameScreen {
             },
             imageUrlFake: "./assets/images/original2.jpg" ,
             imageUrlOriginal: "./assets/images/deepfake2.png"
-        }
+        },
+        
         
             
 
