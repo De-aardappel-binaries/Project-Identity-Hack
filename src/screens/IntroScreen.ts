@@ -13,7 +13,7 @@ class IntroScreen extends GameScreen {
         super(game);
 
         // set game background for this screen
-        document.getElementById('body').style.backgroundImage = "url('https://live.staticflickr.com/684/32192716655_b94c77c8c3_b.jpg')";
+        document.getElementById('body').style.backgroundImage = "url('./assets/images/bg.png')";
         
         // create button
         this.startButton = new UIButton(this.game.canvas.width / 2 - 100, this.game.canvas.height - 100, 200, 50);

@@ -88,10 +88,8 @@ class DeepFakeScreen extends GameScreen {
         this.setNewDeepFake()
 
         // Set background
-        document.getElementById('body').style.backgroundImage = "url('https://live.staticflickr.com/684/32192716655_b94c77c8c3_b.jpg')";
-        
+        document.getElementById('body').style.backgroundImage = "url('./assets/images/bg.png')";
 
-        
         
         // Creates Dialogue
         this.dialogueCharacter = new DialogueCharacter();

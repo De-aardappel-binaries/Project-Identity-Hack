@@ -2,7 +2,7 @@
 /// <reference path="../GameScreen.ts"/>
 
 class EndScoreScreen extends GameScreen {
-    private dialogeCharacter: DialogueCharacter;
+    private dialogueCharacter: DialogueCharacter;
     private highScoreList: Array<HighScoreList> = [];
 
     constructor(game: Game) {
@@ -11,8 +11,8 @@ class EndScoreScreen extends GameScreen {
         document.getElementById('body').style.backgroundImage = "url('./assets/images/Groomer_arrest.png')";
 
         // this.scores = new Scores();
-        this.dialogeCharacter = new DialogueCharacter();
-        this.dialogeCharacter.createDialogue([
+        this.dialogueCharacter = new DialogueCharacter();
+        this.dialogueCharacter.createDialogue([
             'Gefeliciteerd! je hebt gewonnen.',
             'De dader is opgepakt. Dit is je score.']);
         
@@ -58,12 +58,12 @@ class EndScoreScreen extends GameScreen {
             });
 
         // Draw dialogue character
-        this.dialogeCharacter.drawCharacter(ctx, this.game.canvas);
+        this.dialogueCharacter.drawCharacter(ctx, this.game.canvas);
         GameTime.stopTimer();
     }
 
     public listen(input: UserInput) {
-        this.dialogeCharacter.nextDialogueHandler(input);
+        this.dialogueCharacter.nextDialogueHandler(input);
     }
 
     /**

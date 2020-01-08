@@ -71,7 +71,8 @@ class ChatScreen extends GameScreen {
             );
         });
 
-        document.getElementById('body').style.backgroundImage = 'url("https://c.pxhere.com/images/94/4c/e8df4e75da76e5d18ec73ce3f1aa-1575607.jpg!d")';
+        //document.getElementById('body').style.backgroundImage = 'url("https://c.pxhere.com/images/94/4c/e8df4e75da76e5d18ec73ce3f1aa-1575607.jpg!d")';
+        document.getElementById('body').style.backgroundImage = 'url("./assets/images/bg.png")';
 
         // Create chat buttons
         this.createChatButtons();
