@@ -97,7 +97,7 @@ class FakeProfileScreen extends GameScreen {
         ctx.drawImage(this.topNavImage, 0, 0, this.game.canvas.width, 74);
         ctx.drawImage(this.logoImage, 10, 10, 54, 54);
         ctx.drawImage(this.searchBarImage, this.game.canvas.width - 650, 10);
-        ctx.drawImage(this.profileTextImage, this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
+        //ctx.drawImage(this.profileTextImage, this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
         
         if(!this.showNextLevelButton) {
             ctx.drawImage(this.profilePicImage, this.game.canvas.width / 2 - 48, this.game.canvas.height / 2 - 248, 96, 96);
@@ -108,12 +108,16 @@ class FakeProfileScreen extends GameScreen {
             ctx.fillStyle = 'rgba(0,0,0,0.5)';
             ctx.strokeStyle = 'rgba(0,255,0,1)';
 
+            // Profile Bio
+            ctx.fillRect(this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
+            ctx.strokeRect(this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
+
             // real
-            ctx.fillRect(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200, 298, 149)
-            ctx.strokeRect(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200, 298, 149)
+            ctx.fillRect(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200, 298, 149);
+            ctx.strokeRect(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200, 298, 149);
             // fake
-            ctx.fillRect(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149)
-            ctx.strokeRect(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149)
+            ctx.fillRect(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149);
+            ctx.strokeRect(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149);
 
             ctx.fillStyle = 'rgba(0,255,0,1)';
             ctx.textAlign = 'center';
