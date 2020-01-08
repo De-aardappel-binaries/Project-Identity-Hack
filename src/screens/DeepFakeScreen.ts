@@ -60,18 +60,13 @@ class DeepFakeScreen extends GameScreen {
             imageUrlOriginal: "./assets/images/deepfake2.png"
         },
         
-        
-            
-
-       
-        
     ]
+
+
     private currentDeepFake: number = -1;
     public  difference1 = 0;
     public  difference2 = 0;
     private nextScreen: boolean;
-    
-
     private dxOriginal: number;
     private dxDeepFake: number;
     private dY: number;
@@ -94,15 +89,14 @@ class DeepFakeScreen extends GameScreen {
         // Creates Dialogue
         this.dialogueCharacter = new DialogueCharacter();
         this.dialogueCharacter.createDialogue([
-            'De dader heeft een aantal deepfake foto\'s op zijn\npc staan. Zoek hierin de verschillen.\n\nVeel succes!'
+            'De verdachte maakt gebruik van deepfake foto\'s\nDit zijn foto’s gemaakt door\nkunstmatige intelligentie.\nDeze gebruikt hij om net te doen alsof hij iemand\nanders is.\nZoek hierin de verschillen.\nVeel succes!'
         ]);
     }
     
 
-
     private setNewDeepFake(){            
         this.currentDeepFake++;
-        if (this.currentDeepFake < this.deepFakeList.length ){
+        if (this.currentDeepFake < this.deepFakeList.length){
             this.difference1 = 0;
             this.difference2 = 0;
         }
@@ -110,8 +104,6 @@ class DeepFakeScreen extends GameScreen {
             this.nextScreen = true;
             return;
         } 
-
-       
 
         // Import Images
         let imageoriginal = new Image();
@@ -151,10 +143,6 @@ class DeepFakeScreen extends GameScreen {
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
-        
-        
-
-        
         
         //originele foto
         this.game.ctx.drawImage(
@@ -216,7 +204,6 @@ class DeepFakeScreen extends GameScreen {
         
         
     }
-
 
 
     public adjust(game: Game) {

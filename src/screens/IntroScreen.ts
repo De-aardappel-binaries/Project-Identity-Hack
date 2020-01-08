@@ -22,7 +22,6 @@ class IntroScreen extends GameScreen {
     public draw(ctx: CanvasRenderingContext2D) {
 
         // Draw boxes
-        
         ctx.fillStyle = 'rgba(0,0,0,0.5)';
         ctx.strokeStyle = 'rgba(0,255,0,1)';
         ctx.fillRect(this.game.canvas.width / 2 - 100, this.game.canvas.height - 100, 200, 50);
@@ -56,7 +55,7 @@ class IntroScreen extends GameScreen {
             if(input.value !== "") {
                 input.style.display = "none";
                 Game.username = input.value;
-                game.switchScreen(new HackGroomerScreen(game));
+                game.switchScreen(new DeepFakeScreen(game));
             } else this.nextScreen = false;
             
         }
