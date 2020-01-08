@@ -40,6 +40,7 @@ class FakeProfileScreen extends GameScreen {
     private searchBarImage: HTMLImageElement;
     private profilePicLineImage: HTMLImageElement;
     private profilePicImage : HTMLImageElement;
+    private profileTextImage : HTMLImageElement;
     private realButton : UIButton;
     private fakeButton : UIButton;
     private nextLevelButton : UIButton;
@@ -53,8 +54,8 @@ class FakeProfileScreen extends GameScreen {
 
         GameTime.setTimerPos(true, true);
 
-        // document.getElementById('body').style.backgroundImage = "";
-        // document.getElementById('body').style.backgroundColor = "#0f0f0f";
+        document.getElementById('body').style.backgroundImage = "";
+        document.getElementById('body').style.backgroundColor = "#0f0f0f";
         this.setNewProfile();
 
         let topNavImg = new Image();
@@ -72,6 +73,10 @@ class FakeProfileScreen extends GameScreen {
         let profilePicLineImg = new Image();
         profilePicLineImg.src = "./assets/images/FPProfilePicLine.png";
         this.profilePicLineImage = profilePicLineImg;
+
+        let profileTextImg = new Image();
+        profileTextImg.src = "./assets/images/FPProfileText.png";
+        this.profileTextImage = profileTextImg;
 
         this.realButton = new UIButton(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200, 298, 149);
         this.fakeButton = new UIButton(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149);
@@ -92,10 +97,12 @@ class FakeProfileScreen extends GameScreen {
         ctx.drawImage(this.topNavImage, 0, 0, this.game.canvas.width, 74);
         ctx.drawImage(this.logoImage, 10, 10, 54, 54);
         ctx.drawImage(this.searchBarImage, this.game.canvas.width - 650, 10);
+        ctx.drawImage(this.profileTextImage, this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
         
         if(!this.showNextLevelButton) {
             ctx.drawImage(this.profilePicImage, this.game.canvas.width / 2 - 48, this.game.canvas.height / 2 - 248, 96, 96);
             ctx.drawImage(this.profilePicLineImage, this.game.canvas.width / 2 - 50, this.game.canvas.height / 2 - 250, 100, 100);
+            
             // this.fakeButton.drawDebugButton(ctx);
             // this.realButton.drawDebugButton(ctx);
             ctx.fillStyle = 'rgba(0,0,0,0.5)';
@@ -119,8 +126,6 @@ class FakeProfileScreen extends GameScreen {
             ctx.textAlign = "center";
             ctx.font = "20px Arial";
             ctx.fillStyle = 'rgba(0,0,0,0.5)';
-            ctx.fillRect(this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
-            ctx.strokeRect(this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
             ctx.fillStyle = 'rgba(0,255,0,1)';
             ctx.fillText(this.profiles[this.currentProfile].textLine1, this.game.canvas.width / 2, this.game.canvas.height / 2 -15);
             if (this.profiles[this.currentProfile].textLine2 !== undefined)
