@@ -10,7 +10,7 @@ class HackGroomerScreen extends GameScreen{
     private dialogueCharacter = new DialogueCharacter();
 
     private abc: Array<string> = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-    private password = ['groomer', 'deepfake', 'hacking', 'wifi']; // TODO write more passwords
+    private password = ['deepfake', 'hacking', 'wifi', 'internet', 'computer', 'games', 'socialmedia']; // TODO write more passwords
     private charactersFound: Array<string> = [];
     private currentPassword: string;
     private startPoint: Pos;
@@ -18,20 +18,12 @@ class HackGroomerScreen extends GameScreen{
     constructor(game: Game) {
         super(game);
 
+        GameTime.setTimerPos(true, true);
+
         this.dialogueCharacter = new DialogueCharacter();
         this.dialogueCharacter.createDialogue([
-            'Je werkt voor de overheid om verdachten...',
-            'op te sporen. Je hebt informatie gehad over...',
-            'een oudere man die het op een 14-jarig...',
-            'meisje heeft gemunt. Het is aan jou om...',
-            'de juiste informatie te vinden. Succes!',
-            '',
-            'Je gaat nu eerst de computer van',
-            'de oudere man hacken.',
-            'Probeer letters te vinden die het wachtwoord',
-            'kan bevatten totdat je het wachtwoord hebt.',
-            'Elke fout kost 5 seconden van je tijd.',
-            'success!'
+            'Je werkt voor de overheid om verdachten op te\nsporen. Je hebt informatie gehad over een oudere\nman die het op een 14-jarig meisje heeft gemunt.\nHet is aan jou om de juiste informatie te vinden.',
+            'Je gaat nu eerst de computer van de oudere man\nhacken. Probeer letters te vinden die het\nwachtwoord kan bevatten, totdat je het volledige\nwachtwoord hebt. Elke fout kost 5 seconden van\nje tijd.\n\nVeel success!',
         ]);
         
         this.currentPassword = this.password[Math.floor(Math.random()*(this.password.length-1))];
@@ -40,7 +32,7 @@ class HackGroomerScreen extends GameScreen{
             xPos: (game.canvas.width - (this.buttonSize * this.grid)) / 2, 
             yPos: 100
         }
-        // this.randomizeString();
+        this.randomizeString();
         // randomize hier de abc string
 
         for(let y = 0; y < this.grid; y++) {
@@ -175,19 +167,16 @@ class HackGroomerScreen extends GameScreen{
                                 isCharacterFound = true;
                             }
                         }
-                        
                         if(!isDuplicate) {
                             this.charactersFound.push(this.abc[count]);
                         } else this.dialogueCharacter.createDialogue(['Deze letter heb je al ingevuld!']);
 
                         if(!isCharacterFound) {
-                            this.dialogueCharacter.createDialogue(['Fout, min 5 seconden!']);
+                            this.dialogueCharacter.createDialogue(['Dit klopt niet, dit kost je 5 seconden!']);
                             GameTime.removeTime(5);
                         }
-
                         return;
                     }
- 
                     if(this.abc.length-1 == count)
                         count = 0;
                     else

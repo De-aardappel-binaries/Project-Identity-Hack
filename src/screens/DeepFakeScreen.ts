@@ -83,6 +83,8 @@ class DeepFakeScreen extends GameScreen {
     constructor(game: Game) {
         super(game);
 
+        GameTime.setTimerPos(true, true);
+
         this.setNewDeepFake()
 
         // Set background
@@ -94,7 +96,7 @@ class DeepFakeScreen extends GameScreen {
         // Creates Dialogue
         this.dialogueCharacter = new DialogueCharacter();
         this.dialogueCharacter.createDialogue([
-            'De dader heeft een aantal deepfakes op zijn pc\nstaan zoek de verschillen!!'
+            'De dader heeft een aantal deepfake foto\'s op zijn\npc staan. Zoek hierin de verschillen.\n\nVeel succes!'
         ]);
     }
     
