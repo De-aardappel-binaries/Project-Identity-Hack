@@ -55,7 +55,7 @@ class FakeProfileScreen extends GameScreen {
         GameTime.setTimerPos(true, true);
 
         document.getElementById('body').style.backgroundImage = "";
-        document.getElementById('body').style.backgroundColor = "#0f0f0f";
+        document.getElementById('body').style.backgroundColor = "#404040";
         this.setNewProfile();
 
         let topNavImg = new Image();
