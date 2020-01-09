@@ -16,13 +16,13 @@ class FakeProfileScreen extends GameScreen {
             textLine2: "kennis maken met andere meiden van mijn leeftijd."
         },
         {
-            profileImage: "./assets/images/profile-pics/FPBlankProfilePic.png",
+            profileImage: "./assets/images/profile-pics/boy2.png",
             fake: false,
             textLine1: "Ik ben een 42 jarige man. Mijn interesses",
             textLine2: "zijn auto's, computers en voetbal."
         },
         {
-            profileImage: "./assets/images/profile-pics/boy2.png",
+            profileImage: "./assets/images/profile-pics/FPBlankProfilePic.png",
             fake: true,
             textLine1: "Ik ben Jake, 17 jaar, en ik hou van volleybal.",
             textLine2: "Ik wil graag contact met meiden van mijn leeftijd."

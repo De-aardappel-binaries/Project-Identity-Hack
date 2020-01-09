@@ -55,7 +55,7 @@ class IntroScreen extends GameScreen {
             if(input.value !== "") {
                 input.style.display = "none";
                 Game.username = input.value;
-                game.switchScreen(new DeepFakeScreen(game));
+                game.switchScreen(new HackGroomerScreen(game));
             } else this.nextScreen = false;
             
         }

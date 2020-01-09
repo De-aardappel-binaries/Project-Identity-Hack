@@ -24,7 +24,7 @@ class DeepFakeScreen extends GameScreen {
                 x: 0.12,
                 y: 0.38,
             },
-            imageUrlFake: "./assets/images/original3.jpg" ,
+            imageUrlFake: "./assets/images/original3.png" ,
             imageUrlOriginal: "./assets/images/deepfake3.png"
         },
         {
@@ -40,7 +40,7 @@ class DeepFakeScreen extends GameScreen {
                 x: 0.44,
                 y: 0.88,
             },
-            imageUrlFake: "./assets/images/original.jpg" ,
+            imageUrlFake: "./assets/images/original.png" ,
             imageUrlOriginal: "./assets/images/deepfake.png"
         },
         {
@@ -56,7 +56,7 @@ class DeepFakeScreen extends GameScreen {
                 x: 0.3,
                 y: 0.35,
             },
-            imageUrlFake: "./assets/images/original2.jpg" ,
+            imageUrlFake: "./assets/images/original2.png" ,
             imageUrlOriginal: "./assets/images/deepfake2.png"
         },
         
