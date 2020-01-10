@@ -172,8 +172,8 @@ class HackGroomerScreen extends GameScreen{
                         } else this.dialogueCharacter.createDialogue(['Deze letter heb je al ingevuld!']);
 
                         if(!isCharacterFound) {
-                            this.dialogueCharacter.createDialogue(['Dit klopt niet, dit kost je 5 seconden!']);
-                            GameTime.removeTime(5);
+                            this.dialogueCharacter.createDialogue(['Dit klopt niet, dit kost je -3 seconden!']);
+                            GameTime.removeTime(3);
                         }
                         return;
                     }

@@ -7,32 +7,37 @@ class FakeProfileScreen extends GameScreen {
             profileImage: "./assets/images/profile-pics/boy1.png",
             fake: true,
             textLine1: "Ik ben een vrolijke, 15-jarige jongen, op zoek naar",
-            textLine2: "nieuwe vrienden. Ik deel graag foto's met anderen."
+            textLine2: "nieuwe vrienden. Ik deel graag foto's met anderen.",
+            wrongAwnserExplanation: ''
         },
         {
             profileImage: "./assets/images/profile-pics/girl1.png",
             fake: true,
             textLine1: "Hoi! Mijn naam is Emily, 14 jaar, en ik wil graag",
-            textLine2: "kennis maken met andere meiden van mijn leeftijd."
+            textLine2: "kennis maken met andere meiden van mijn leeftijd.",
+            wrongAwnserExplanation: ''
         },
         {
             profileImage: "./assets/images/profile-pics/boy2.png",
             fake: false,
             textLine1: "Ik ben een 42 jarige man. Mijn interesses",
-            textLine2: "zijn auto's, computers en voetbal."
+            textLine2: "zijn auto's, computers en voetbal.",
+            wrongAwnserExplanation: ''
         },
         {
             profileImage: "./assets/images/profile-pics/FPBlankProfilePic.png",
             fake: true,
             textLine1: "Ik ben Jake, 17 jaar, en ik hou van volleybal.",
-            textLine2: "Ik wil graag contact met meiden van mijn leeftijd."
+            textLine2: "Ik wil graag contact met meiden van mijn leeftijd.",
+            wrongAwnserExplanation: ''
         },
         {
             profileImage: "./assets/images/profile-pics/girl2.png",
             fake: true,
             textLine1: "Mijn naam is Jard, ik hou van paarden.",
             textLine2: "Ik zoek andere meiden om mee te kletsen.",
-            textLine3: "Ik hou van foto's delen met anderen. ;)"
+            textLine3: "Ik hou van foto's delen met anderen. ;)",
+            wrongAwnserExplanation: ''
         }
     ];
     private topNavImage: HTMLImageElement;
@@ -164,7 +169,7 @@ class FakeProfileScreen extends GameScreen {
                     this.setNewProfile();
                 } else {
                     this.dialogueCharacter.createDialogue([
-                        "Dat antwoord was helaas fout. Dat kost je\n10 seconden! Probeer het opnieuw!"
+                        "Dat antwoord was helaas fout. Dat kost je\n10 seconden! Probeer het opnieuw!\n\n" + this.profiles[this.currentProfile].wrongAwnserExplanation
                     ]);
                     GameTime.removeTime(10);
                 }
@@ -177,7 +182,7 @@ class FakeProfileScreen extends GameScreen {
                     this.setNewProfile();
                 } else {
                     this.dialogueCharacter.createDialogue([
-                        "Dat antwoord was helaas fout. Dat kost je\n10 seconden! Probeer het opnieuw!"
+                        "Dat antwoord was helaas fout. Dat kost je\n10 seconden! Probeer het opnieuw!\n\n" + this.profiles[this.currentProfile].wrongAwnserExplanation
                     ]);
                     GameTime.removeTime(10);
                 }
