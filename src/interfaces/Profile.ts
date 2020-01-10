@@ -4,5 +4,5 @@ interface Profiles {
     textLine1: string,
     textLine2?: string,
     textLine3?: string,
-    wrongAwnserExplanation: string
+    wrongAnswerExplanation: string
 }

@@ -8,36 +8,37 @@ class FakeProfileScreen extends GameScreen {
             fake: true,
             textLine1: "Ik ben een vrolijke, 15-jarige jongen, op zoek naar",
             textLine2: "nieuwe vrienden. Ik deel graag foto's met anderen.",
-            wrongAwnserExplanation: ''
+            wrongAnswerExplanation: "Nep profielen hebben vaak de foto van een\nbijzonder mooi of beroemd persoon."
         },
         {
             profileImage: "./assets/images/profile-pics/girl1.png",
-            fake: true,
-            textLine1: "Hoi! Mijn naam is Emily, 14 jaar, en ik wil graag",
-            textLine2: "kennis maken met andere meiden van mijn leeftijd.",
-            wrongAwnserExplanation: ''
+            fake: false,
+            textLine1: "Hoi! Mijn naam is Emily, 11 jaar, en ik wil graag",
+            textLine2: "kennis maken met andere meisjes.",
+            textLine3: "Ik houd van paardrijden, tekenen en Disney",
+            wrongAnswerExplanation: "Ze laat haar echte gezicht zien,\nde woordkeuze past bij wat een 11-jarige\nzou zeggen.\nOok haar hobby's passen bij\nwat een 11-jarige zou doen."
         },
         {
             profileImage: "./assets/images/profile-pics/boy2.png",
             fake: false,
             textLine1: "Ik ben een 42 jarige man. Mijn interesses",
             textLine2: "zijn auto's, computers en voetbal.",
-            wrongAwnserExplanation: ''
+            wrongAnswerExplanation: "Zijn hobby's komen overeen met wat een man\nvan zijn leeftijd zou doen.\nAangezien computers één van zijn\nhobby's zijn is het ook logisch dat hij een\nplaatje heeft wat lijkt op een game karakter.\nOok zouden jongeren een oudere\nvolwassene minder zoeken."
         },
         {
             profileImage: "./assets/images/profile-pics/FPBlankProfilePic.png",
             fake: true,
-            textLine1: "Ik ben Jake, 17 jaar, en ik hou van volleybal.",
+            textLine1: "Ik ben Jake, 17 jaar, en ik houd van volleybal.",
             textLine2: "Ik wil graag contact met meiden van mijn leeftijd.",
-            wrongAwnserExplanation: ''
+            wrongAnswerExplanation: "Je kan niet zien wie hij is, daarom kan je beter\nhet zekere voor het onzekere nemen."
         },
         {
             profileImage: "./assets/images/profile-pics/girl2.png",
             fake: true,
-            textLine1: "Mijn naam is Jard, ik hou van paarden.",
+            textLine1: "Mijn naam is Jard, ik houd van paarden.",
             textLine2: "Ik zoek andere meiden om mee te kletsen.",
             textLine3: "Ik hou van foto's delen met anderen. ;)",
-            wrongAwnserExplanation: ''
+            wrongAnswerExplanation: "Jard is een jongensnaam wat al vreemd is,\nmaar het wordt nog vreemder:\nZij wil ook dat andere meisjes hun foto's delen\nen je kan niet zien wie ze is.\nEr zijn dus genoeg redenen om aan te nemen dat\nde foto's erg gevoelig kunnen zijn."
         }
     ];
     private topNavImage: HTMLImageElement;
@@ -169,7 +170,7 @@ class FakeProfileScreen extends GameScreen {
                     this.setNewProfile();
                 } else {
                     this.dialogueCharacter.createDialogue([
-                        "Dat antwoord was helaas fout. Dat kost je\n10 seconden! Probeer het opnieuw!\n\n" + this.profiles[this.currentProfile].wrongAwnserExplanation
+                        "Dat antwoord was helaas fout. Dat kost je\n10 seconden! Probeer het opnieuw!\n\n" + this.profiles[this.currentProfile].wrongAnswerExplanation
                     ]);
                     GameTime.removeTime(10);
                 }
@@ -182,7 +183,7 @@ class FakeProfileScreen extends GameScreen {
                     this.setNewProfile();
                 } else {
                     this.dialogueCharacter.createDialogue([
-                        "Dat antwoord was helaas fout. Dat kost je\n10 seconden! Probeer het opnieuw!\n\n" + this.profiles[this.currentProfile].wrongAwnserExplanation
+                        "Dat antwoord was helaas fout. Dat kost je\n10 seconden! Probeer het opnieuw!\n\n" + this.profiles[this.currentProfile].wrongAnswerExplanation
                     ]);
                     GameTime.removeTime(10);
                 }
