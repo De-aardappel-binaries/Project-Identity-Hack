@@ -23,7 +23,7 @@ class HackGroomerScreen extends GameScreen{
         this.dialogueCharacter = new DialogueCharacter();
         this.dialogueCharacter.createDialogue([
             'Je werkt voor de overheid om verdachten op te\nsporen. Je hebt informatie gehad over een oudere\nman die het op een 14-jarig meisje heeft gemunt.\nHet is aan jou om de juiste informatie te vinden.',
-            'Je gaat nu eerst de computer van de oudere man\nhacken. Probeer letters te vinden die het\nwachtwoord kan bevatten, totdat je het volledige\nwachtwoord hebt. Elke fout kost 5 seconden van\nje tijd.\n\nVeel success!',
+            'Je gaat nu eerst de computer van de verdachte\nhacken. Probeer letters te vinden die het\nwachtwoord kan bevatten, totdat je het volledige\nwachtwoord hebt. Elke fout kost 3 seconden van\nje tijd.\n\nVeel success!',
         ]);
         
         this.currentPassword = this.password[Math.floor(Math.random()*(this.password.length-1))];
@@ -172,8 +172,8 @@ class HackGroomerScreen extends GameScreen{
                         } else this.dialogueCharacter.createDialogue(['Deze letter heb je al ingevuld!']);
 
                         if(!isCharacterFound) {
-                            this.dialogueCharacter.createDialogue(['Dit klopt niet, dit kost je 5 seconden!']);
-                            GameTime.removeTime(5);
+                            this.dialogueCharacter.createDialogue(['Dit klopt niet, dit kost je -3 seconden!']);
+                            GameTime.removeTime(3);
                         }
                         return;
                     }

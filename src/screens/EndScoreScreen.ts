@@ -2,7 +2,7 @@
 /// <reference path="../GameScreen.ts"/>
 
 class EndScoreScreen extends GameScreen {
-    private dialogeCharacter: DialogueCharacter;
+    private dialogueCharacter: DialogueCharacter;
     private highScoreList: Array<HighScoreList> = [];
 
     constructor(game: Game) {
@@ -11,9 +11,16 @@ class EndScoreScreen extends GameScreen {
         document.getElementById('body').style.backgroundImage = "url('./assets/images/Groomer_arrest.png')";
 
         // this.scores = new Scores();
+<<<<<<< HEAD
         this.dialogeCharacter = new DialogueCharacter();
         this.dialogeCharacter.createDialogue([
             'Gefeliciteerd! je hebt gewonnen. De dader is opgepakt.\nDit is je score.']);
+=======
+        this.dialogueCharacter = new DialogueCharacter();
+        this.dialogueCharacter.createDialogue([
+            'Gefeliciteerd! je hebt gewonnen.',
+            'De dader is opgepakt. Dit is je score.']);
+>>>>>>> e826287a1afb38f4b54c1e7e2a541356c1527942
         
         GameTime.stopTimer();
 
@@ -53,16 +60,16 @@ class EndScoreScreen extends GameScreen {
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.fillStyle = 'rgba(0,255,0,1)';
-                ctx.fillText(highscore.Name + ' : ' + highscore.Score, this.game.canvas.width / 2, 180 + (54*index)); 
+                ctx.fillText(highscore.name + ' : ' + highscore.score, this.game.canvas.width / 2, 180 + (54*index)); 
             });
 
         // Draw dialogue character
-        this.dialogeCharacter.drawCharacter(ctx, this.game.canvas);
+        this.dialogueCharacter.drawCharacter(ctx, this.game.canvas);
         GameTime.stopTimer();
     }
 
     public listen(input: UserInput) {
-        this.dialogeCharacter.nextDialogueHandler(input);
+        this.dialogueCharacter.nextDialogueHandler(input);
     }
 
     /**
@@ -71,7 +78,7 @@ class EndScoreScreen extends GameScreen {
     private getHighScores():Promise<Array<HighScoreList>> {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
+            xhr.withCredentials = false;
 
             xhr.addEventListener("readystatechange", function() {
                 if(this.readyState === 4) {
@@ -99,7 +106,7 @@ class EndScoreScreen extends GameScreen {
             let data = `name=${name}&score=${score}`;
 
             const xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
+            xhr.withCredentials = false;
 
             xhr.addEventListener("readystatechange", function() {
                 if(this.readyState === 4) {

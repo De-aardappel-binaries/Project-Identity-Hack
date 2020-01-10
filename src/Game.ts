@@ -23,7 +23,7 @@ class Game {
 
         // Instantiate all other attributes
         this.input = new UserInput();
-        GameTime.setTime(300);
+        GameTime.setTime(420);
 
         // Set the initial screen
         this.currentScreen = new IntroScreen(this);

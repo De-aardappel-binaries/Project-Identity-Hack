@@ -7,32 +7,38 @@ class FakeProfileScreen extends GameScreen {
             profileImage: "./assets/images/profile-pics/boy1.png",
             fake: true,
             textLine1: "Ik ben een vrolijke, 15-jarige jongen, op zoek naar",
-            textLine2: "nieuwe vrienden. Ik deel graag foto's met anderen."
+            textLine2: "nieuwe vrienden. Ik deel graag foto's met anderen.",
+            wrongAnswerExplanation: "Nep profielen hebben vaak de foto van een\nbijzonder mooi of beroemd persoon."
         },
         {
             profileImage: "./assets/images/profile-pics/girl1.png",
-            fake: true,
-            textLine1: "Hoi! Mijn naam is Emily, 14 jaar, en ik wil graag",
-            textLine2: "kennis maken met andere meiden van mijn leeftijd."
-        },
-        {
-            profileImage: "./assets/images/profile-pics/FPBlankProfilePic.png",
             fake: false,
-            textLine1: "Ik ben een 42 jarige man. Mijn interesses",
-            textLine2: "zijn auto's, computers en voetbal."
+            textLine1: "Hoi! Mijn naam is Emily, 11 jaar, en ik wil graag",
+            textLine2: "kennis maken met andere meisjes.",
+            textLine3: "Ik houd van paardrijden, tekenen en Disney",
+            wrongAnswerExplanation: "Ze laat haar echte gezicht zien,\nde woordkeuze past bij wat een 11-jarige\nzou zeggen.\nOok haar hobby's passen bij\nwat een 11-jarige zou doen."
         },
         {
             profileImage: "./assets/images/profile-pics/boy2.png",
+            fake: false,
+            textLine1: "Ik ben een 42 jarige man. Mijn interesses",
+            textLine2: "zijn auto's, computers en voetbal.",
+            wrongAnswerExplanation: "Zijn hobby's komen overeen met wat een man\nvan zijn leeftijd zou doen.\nAangezien computers één van zijn\nhobby's zijn is het ook logisch dat hij een\nplaatje heeft wat lijkt op een game karakter.\nOok zouden jongeren een oudere\nvolwassene minder zoeken."
+        },
+        {
+            profileImage: "./assets/images/profile-pics/FPBlankProfilePic.png",
             fake: true,
-            textLine1: "Ik ben Jake, 17 jaar, en ik hou van volleybal.",
-            textLine2: "Ik wil graag contact met meiden van mijn leeftijd."
+            textLine1: "Ik ben Jake, 17 jaar, en ik houd van volleybal.",
+            textLine2: "Ik wil graag contact met meiden van mijn leeftijd.",
+            wrongAnswerExplanation: "Je kan niet zien wie hij is, daarom kan je beter\nhet zekere voor het onzekere nemen."
         },
         {
             profileImage: "./assets/images/profile-pics/girl2.png",
             fake: true,
-            textLine1: "Mijn naam is Jard, ik hou van paarden.",
+            textLine1: "Mijn naam is Jard, ik houd van paarden.",
             textLine2: "Ik zoek andere meiden om mee te kletsen.",
-            textLine3: "Ik hou van foto's delen met anderen. ;)"
+            textLine3: "Ik hou van foto's delen met anderen. ;)",
+            wrongAnswerExplanation: "Jard is een jongensnaam wat al vreemd is,\nmaar het wordt nog vreemder:\nZij wil ook dat andere meisjes hun foto's delen\nen je kan niet zien wie ze is.\nEr zijn dus genoeg redenen om aan te nemen dat\nde foto's erg gevoelig kunnen zijn."
         }
     ];
     private topNavImage: HTMLImageElement;
@@ -53,8 +59,8 @@ class FakeProfileScreen extends GameScreen {
 
         GameTime.setTimerPos(true, true);
 
-        // document.getElementById('body').style.backgroundImage = "";
-        // document.getElementById('body').style.backgroundColor = "#0f0f0f";
+        document.getElementById('body').style.backgroundImage = "";
+        document.getElementById('body').style.backgroundColor = "#404040";
         this.setNewProfile();
 
         let topNavImg = new Image();
@@ -92,21 +98,31 @@ class FakeProfileScreen extends GameScreen {
         ctx.drawImage(this.topNavImage, 0, 0, this.game.canvas.width, 74);
         ctx.drawImage(this.logoImage, 10, 10, 54, 54);
         ctx.drawImage(this.searchBarImage, this.game.canvas.width - 650, 10);
+        //ctx.drawImage(this.profileTextImage, this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
         
         if(!this.showNextLevelButton) {
             ctx.drawImage(this.profilePicImage, this.game.canvas.width / 2 - 48, this.game.canvas.height / 2 - 248, 96, 96);
             ctx.drawImage(this.profilePicLineImage, this.game.canvas.width / 2 - 50, this.game.canvas.height / 2 - 250, 100, 100);
+
+            // Profile Bio
+            ctx.fillStyle = 'rgba(64,64,64,1)';
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = 'rgba(0,0,0,1)';
+            ctx.fillRect(this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
+            ctx.strokeRect(this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
+
             // this.fakeButton.drawDebugButton(ctx);
             // this.realButton.drawDebugButton(ctx);
             ctx.fillStyle = 'rgba(0,0,0,0.5)';
+            ctx.lineWidth = 1;
             ctx.strokeStyle = 'rgba(0,255,0,1)';
 
             // real
-            ctx.fillRect(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200, 298, 149)
-            ctx.strokeRect(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200, 298, 149)
+            ctx.fillRect(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200, 298, 149);
+            ctx.strokeRect(this.game.canvas.width / 2 - 298, this.game.canvas.height / 2 + 200, 298, 149);
             // fake
-            ctx.fillRect(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149)
-            ctx.strokeRect(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149)
+            ctx.fillRect(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149);
+            ctx.strokeRect(this.game.canvas.width / 2, this.game.canvas.height / 2 + 200, 298, 149);
 
             ctx.fillStyle = 'rgba(0,255,0,1)';
             ctx.textAlign = 'center';
@@ -119,9 +135,7 @@ class FakeProfileScreen extends GameScreen {
             ctx.textAlign = "center";
             ctx.font = "20px Arial";
             ctx.fillStyle = 'rgba(0,0,0,0.5)';
-            ctx.fillRect(this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
-            ctx.strokeRect(this.game.canvas.width / 2 - 275, this.game.canvas.height / 2 - 86.5, 550, 173);
-            ctx.fillStyle = 'rgba(0,255,0,1)';
+            ctx.fillStyle = 'rgba(255,255,255,1)';
             ctx.fillText(this.profiles[this.currentProfile].textLine1, this.game.canvas.width / 2, this.game.canvas.height / 2 -15);
             if (this.profiles[this.currentProfile].textLine2 !== undefined)
                 ctx.fillText(this.profiles[this.currentProfile].textLine2, this.game.canvas.width / 2, this.game.canvas.height / 2 + 15);
@@ -156,7 +170,7 @@ class FakeProfileScreen extends GameScreen {
                     this.setNewProfile();
                 } else {
                     this.dialogueCharacter.createDialogue([
-                        "Dat antwoord was helaas fout. Dat kost je\n10 seconden! Probeer het opnieuw!"
+                        "Dat antwoord was helaas fout. Dat kost je\n10 seconden! Probeer het opnieuw!\n\n" + this.profiles[this.currentProfile].wrongAnswerExplanation
                     ]);
                     GameTime.removeTime(10);
                 }
@@ -169,7 +183,7 @@ class FakeProfileScreen extends GameScreen {
                     this.setNewProfile();
                 } else {
                     this.dialogueCharacter.createDialogue([
-                        "Dat antwoord was helaas fout. Dat kost je\n10 seconden! Probeer het opnieuw!"
+                        "Dat antwoord was helaas fout. Dat kost je\n10 seconden! Probeer het opnieuw!\n\n" + this.profiles[this.currentProfile].wrongAnswerExplanation
                     ]);
                     GameTime.removeTime(10);
                 }

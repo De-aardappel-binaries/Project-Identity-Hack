@@ -1,5 +1,5 @@
 interface HighScoreList {
-    HighScoreID: number, 
-    Name: string, 
-    Score: number
+    highScoreID: number, 
+    name: string, 
+    score: number
 }
