@@ -72,7 +72,7 @@ class EndScoreScreen extends GameScreen {
     private getHighScores():Promise<Array<HighScoreList>> {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
+            xhr.withCredentials = false;
 
             xhr.addEventListener("readystatechange", function() {
                 if(this.readyState === 4) {
@@ -100,7 +100,7 @@ class EndScoreScreen extends GameScreen {
             let data = `name=${name}&score=${score}`;
 
             const xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
+            xhr.withCredentials = false;
 
             xhr.addEventListener("readystatechange", function() {
                 if(this.readyState === 4) {
