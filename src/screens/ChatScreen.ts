@@ -92,7 +92,7 @@ class ChatScreen extends GameScreen {
     
     public draw(ctx: CanvasRenderingContext2D) {
         // Draw background screen
-        ctx.fillStyle = 'rgba(64,64,64,1)';
+        ctx.fillStyle = '#ffffff';
         ctx.fillRect(
             this.game.canvas.width * 0.1,
             0, 
@@ -105,7 +105,7 @@ class ChatScreen extends GameScreen {
             this.game.canvas.width * 0.6, 
             50
         );
-        ctx.fillStyle = 'rgba(15,15,15,0.8)';
+        ctx.fillStyle = "rgba(240, 240, 240, 0.8)";
         ctx.fillRect(
             this.game.canvas.width * 0.3,
             50, 
@@ -116,7 +116,7 @@ class ChatScreen extends GameScreen {
 
         // Draw Chat Users
         this.chats.forEach((User: Chat, index: number) => {
-            ctx.strokeStyle = 'rgba(175,175,175,1)';
+            ctx.strokeStyle = "#afafaf";
             ctx.strokeRect(
                 this.game.canvas.width * 0.1,
                 (100 * (index)),
@@ -124,7 +124,7 @@ class ChatScreen extends GameScreen {
                 100
             );
             if (index ===  this.currentChat) {
-                ctx.fillStyle = 'rgba(127,127,127,1)';
+                ctx.fillStyle = '#f0f0f0';
                 ctx.fillRect(
                     this.game.canvas.width * 0.1,
                     (100 * (index)),
@@ -132,17 +132,17 @@ class ChatScreen extends GameScreen {
                     100
                 );
             }
-            ctx.fillStyle = 'rgba(0,200,0,1)';
+            ctx.fillStyle = "black";
             ctx.textAlign = "left";
             ctx.font = "26px Arial";
             ctx.fillText(User.chatName, this.game.canvas.width * 0.1 + 10, (100 * (index + 1) - 60));
-            ctx.fillStyle = 'rgba(0,0,0,1)';
+            ctx.fillStyle = "darkgray";
             ctx.font = "18px Arial";
             ctx.fillText(User.chatMessages[0].message.substr(0,30) + (User.chatMessages[0].message.length > 30 ? '...' : ''), this.game.canvas.width * 0.1 + 10, (100 * (index + 1) - 30));
         })
 
         // Draw hints
-        ctx.fillStyle = 'rgba(0,0,0,1)';
+        ctx.fillStyle = "black";
         ctx.strokeRect(
             this.game.canvas.width * 0.1,
             this.game.canvas.height - 50,
@@ -157,7 +157,7 @@ class ChatScreen extends GameScreen {
 
         // Draw Current chat
         // Title
-        ctx.fillStyle = 'rgba(0,255,0,1)';
+        ctx.fillStyle = "black";
         ctx.font = "26px Arial";
         ctx.textAlign = "left";
         ctx.textBaseline = "middle";
@@ -169,15 +169,15 @@ class ChatScreen extends GameScreen {
         this.chats[this.currentChat].chatMessages.forEach((ChatMessage: ChatMessage, index: number) => {
             if(ChatMessage.self) {
                 // Draw message if self typed
-                ctx.fillStyle = 'rgba(127,127,127,1)';
+                ctx.fillStyle = 'lightgreen';
                 ctx.fillRect(this.game.canvas.width * 0.9 - 390 , (50 * index) + 60, 380, 40);
-                ctx.fillStyle = 'rgba(255,255,255,1)';
+                ctx.fillStyle = 'black';
                 ctx.fillText(ChatMessage.message, this.game.canvas.width * 0.9 - 385 , (50 * index) + 64);
             } else {
                 // Draw message if other person typed
-                ctx.fillStyle = 'rgba(127,127,127,1)';
+                ctx.fillStyle = 'white';
                 ctx.fillRect(this.game.canvas.width * 0.3 + 30, (50 * index) + 60, 380, 40);
-                ctx.fillStyle = 'rgba(0,0,0,1)';
+                ctx.fillStyle = 'black';
                 ctx.fillText(ChatMessage.message, this.game.canvas.width * 0.3 + 35, (50 * index) + 64);
             }
         });
