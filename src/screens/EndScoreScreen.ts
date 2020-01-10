@@ -54,7 +54,7 @@ class EndScoreScreen extends GameScreen {
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.fillStyle = 'rgba(0,255,0,1)';
-                ctx.fillText(highscore.Name + ' : ' + highscore.Score, this.game.canvas.width / 2, 180 + (54*index)); 
+                ctx.fillText(highscore.name + ' : ' + highscore.score, this.game.canvas.width / 2, 180 + (54*index)); 
             });
 
         // Draw dialogue character

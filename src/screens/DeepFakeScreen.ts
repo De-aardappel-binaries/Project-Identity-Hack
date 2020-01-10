@@ -10,7 +10,7 @@ class DeepFakeScreen extends GameScreen {
     private differenceButton2: UIButton;
     private dialogueCharacter: DialogueCharacter;
     
-    public deepFakeList: Array<Deepfake> = [
+    public deepFakeList: Array<DeepFake> = [
         {
             differenceButton1:{
                     height: 0.05,
