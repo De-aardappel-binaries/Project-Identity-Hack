@@ -11,16 +11,9 @@ class EndScoreScreen extends GameScreen {
         document.getElementById('body').style.backgroundImage = "url('./assets/images/Groomer_arrest.png')";
 
         // this.scores = new Scores();
-<<<<<<< HEAD
-        this.dialogeCharacter = new DialogueCharacter();
-        this.dialogeCharacter.createDialogue([
-            'Gefeliciteerd! je hebt gewonnen. De dader is opgepakt.\nDit is je score.']);
-=======
         this.dialogueCharacter = new DialogueCharacter();
         this.dialogueCharacter.createDialogue([
-            'Gefeliciteerd! je hebt gewonnen.',
-            'De dader is opgepakt. Dit is je score.']);
->>>>>>> e826287a1afb38f4b54c1e7e2a541356c1527942
+            'Gefeliciteerd! je hebt gewonnen. De dader is opgepakt.\nDit is je score.']);
         
         GameTime.stopTimer();
 
