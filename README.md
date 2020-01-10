@@ -8,7 +8,7 @@ Doel van de speler(s): Voltooi alle puzzels zo snel en goed mogelijk om maximale
 
 Antagonist: De groomer
 
-Setting: Een browser.
+Setting: Een computer.
 
 Thema’s die terug moeten komen in de puzzels:
 1.	Wachtwoorden
